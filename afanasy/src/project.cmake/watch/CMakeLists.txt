@@ -1,15 +1,18 @@
 file(GLOB_RECURSE src RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/../../watch/*.cpp")
 file(GLOB_RECURSE inc RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/../../watch/*.h")
 
-find_package(Qt6 QUIET COMPONENTS Widgets Multimedia)
+find_package(Qt6 QUIET COMPONENTS Widgets LinguistTools Multimedia)
 if (NOT Qt6_FOUND)
-	find_package(Qt5 REQUIRED COMPONENTS Widgets Multimedia)
+	find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Multimedia)
+	qt5_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../watch ${CMAKE_CURRENT_SOURCE_DIR}/../../watch/zh_cn.ts)
+else()
+	qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR}/../../watch ${CMAKE_CURRENT_SOURCE_DIR}/../../watch/zh_cn.ts)
 endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_executable(afwatch ${src} ${inc})
+add_executable(afwatch ${src} ${inc} ${QM_FILES})
 
 if( NOT $ENV{AF_ADD_CFLAGS} STREQUAL "" )
    set_target_properties(afwatch PROPERTIES COMPILE_FLAGS $ENV{AF_ADD_CFLAGS})
