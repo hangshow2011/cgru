@@ -177,7 +177,7 @@ bool ListItems::mousePressed(QMouseEvent * i_event)
 	}
 
 	if (m_view->selectionMode() == QAbstractItemView::NoSelection)
-		displayWarning("Selection is allowed for administrators only.");
+		displayWarning(tr("Selection is allowed for administrators only."));
 
 	return false;
 }
@@ -391,7 +391,7 @@ void ListItems::setParameter(Item::EType i_type, const std::string & i_name, con
 	std::vector<int> ids = getSelectedIds(i_type);
 	if (ids.size() == 0)
 	{
-		displayWarning("No items selected.");
+		displayWarning(tr("No items selected."));
 		return;
 	}
 
@@ -416,7 +416,7 @@ void ListItems::operation(Item::EType i_type, const std::string & i_operation)
 	std::vector<int> ids = getSelectedIds(i_type);
 	if (ids.size() == 0)
 	{
-		displayWarning("No items selected.");
+		displayWarning(tr("No items selected."));
 		return;
 	}
 

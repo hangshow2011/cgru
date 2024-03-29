@@ -8,6 +8,8 @@ class ListWork;
 
 class ItemBranch : public ItemWork
 {
+	Q_DECLARE_TR_FUNCTIONS(ItemBranch);
+
 public:
 	ItemBranch(ListWork * i_list_work, af::Branch * i_branch, const CtrlSortFilter * i_ctrl_sf);
 	~ItemBranch();

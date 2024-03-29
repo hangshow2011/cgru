@@ -30,9 +30,9 @@ ItemNode::ItemNode(ListNodes * i_list_nodes, af::Node * node, EType i_type, cons
 
 void ItemNode::addChildsHideShowButton()
 {
-	m_btn_childs_hide = new ItemButton("hide_childs", 2, 2, 12, "▼", "Hide childs.");
+	m_btn_childs_hide = new ItemButton("hide_childs", 2, 2, 12, "V", "Hide childs.");
 	m_btn_childs_hide->setHidden(true);
-	m_btn_childs_show   = new ItemButton("show_childs",   2, 2, 12, "▶", "Show childs.");
+	m_btn_childs_show   = new ItemButton("show_childs",   2, 2, 12, ">", "Show childs.");
 	m_btn_childs_show->setHidden(true);
 
 	addButton(m_btn_childs_hide);

@@ -99,92 +99,92 @@ ListJobs::ListJobs(QWidget * i_parent, bool i_listwork, const std::string & i_na
 	{
 	ButtonPanel * bp;
 
-	bp = addButtonPanel(Item::TAny, "LOG","jobs_log","Show job log.");
+	bp = addButtonPanel(Item::TAny, tr("LOG"),"jobs_log","Show job log.");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actRequestLog()));
 
-	bp = addButtonPanel(Item::TAny, "PAUSE","jobs_pause","Pause selected jobs or branches.","P");
+	bp = addButtonPanel(Item::TAny, tr("PAUSE"),"jobs_pause","Pause selected jobs or branches.","P");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actPause()));
 
-	bp = addButtonPanel(Item::TAny, "START","jobs_start","Start selected jobs or branches.","S");
+	bp = addButtonPanel(Item::TAny, tr("START"),"jobs_start","Start selected jobs or branches.","S");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actStart()));
 
-	bp = addButtonPanel(Item::TJob, "STOP","jobs_stop","Stop selected jobs tasks and pause jobs.","", true);
+	bp = addButtonPanel(Item::TJob, tr("STOP"),"jobs_stop","Stop selected jobs tasks and pause jobs.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actStop()));
 
 	if (false == af::Environment::VISOR())
 	{
-		addButtonsMenu(Item::TJob, "Move","Move job(s).");
+		addButtonsMenu(Item::TJob, tr("Move"),"Move job(s).");
 
-		bp = addButtonPanel(Item::TJob, "Up", "move_up", "Move job(s) up.","u");
+		bp = addButtonPanel(Item::TJob, tr("Up"), "move_up", "Move job(s) up.","u");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actMoveUp()));
 
-		bp = addButtonPanel(Item::TJob, "Down", "move_down", "Move job(s) down.","d");
+		bp = addButtonPanel(Item::TJob, tr("Down"), "move_down", "Move job(s) down.","d");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actMoveDown()));
 
-		bp = addButtonPanel(Item::TJob, "Top", "move_top", "Move job(s) top.","t");
+		bp = addButtonPanel(Item::TJob, tr("Top"), "move_top", "Move job(s) top.","t");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actMoveTop()));
 
-		bp = addButtonPanel(Item::TJob, "Bottom", "move_bottom", "Move job(s) bottom.","b");
+		bp = addButtonPanel(Item::TJob, tr("Bottom"), "move_bottom", "Move job(s) bottom.","b");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actMoveBottom()));
 
 		resetButtonsMenu();
 	}
 
-	addButtonsMenu(Item::TJob, "Restart","Restart jobs tasks menu.");
+	addButtonsMenu(Item::TJob, tr("Restart"), "Restart jobs tasks menu.");
 
-	bp = addButtonPanel(Item::TJob, "ALL TASKS","jobs_restart","Restart all tasks of all selected jobs.","", true);
+	bp = addButtonPanel(Item::TJob, tr("ALL TASKS"),"jobs_restart","Restart all tasks of all selected jobs.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestart()));
 
-	bp = addButtonPanel(Item::TJob, "AND PAUSE","jobs_restart_pause","Restart tasks and pause selected jobs.","", true);
+	bp = addButtonPanel(Item::TJob, tr("AND PAUSE"),"jobs_restart_pause","Restart tasks and pause selected jobs.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestartPause()));
 
-	bp = addButtonPanel(Item::TJob, "WARNINGS","jobs_restart_warning","Restart tasks with warnings.","", true);
+	bp = addButtonPanel(Item::TJob, tr("WARNINGS"),"jobs_restart_warning","Restart tasks with warnings.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestartWarnings()));
 
-	bp = addButtonPanel(Item::TJob, "RUNNING","jobs_restart_running","Restart runnning tasks.","", true);
+	bp = addButtonPanel(Item::TJob, tr("RUNNING"),"jobs_restart_running","Restart runnning tasks.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestartRunning()));
 
-	bp = addButtonPanel(Item::TJob, "SKIPPED","jobs_restart_skipped","Restart skipped tasks.","", true);
+	bp = addButtonPanel(Item::TJob, tr("SKIPPED"),"jobs_restart_skipped","Restart skipped tasks.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestartSkipped()));
 
-	bp = addButtonPanel(Item::TJob, "DONE","jobs_restart_done","Restart done tasks.","", true);
+	bp = addButtonPanel(Item::TJob, tr("DONE"),"jobs_restart_done","Restart done tasks.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRestartDone()));
 
 	resetButtonsMenu();
 
-	addButtonsMenu(Item::TJob, "Errors","Show/Manipulate error hosts and tasks.");
+	addButtonsMenu(Item::TJob, tr("Errors"),"Show/Manipulate error hosts and tasks.");
 
-	bp = addButtonPanel(Item::TJob, "SHOW HOSTS","jobs_show_err_hosts","Show error hosts.");
+	bp = addButtonPanel(Item::TJob, tr("SHOW HOSTS"),"jobs_show_err_hosts","Show error hosts.");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actRequestErrorHostsList()));
 
-	bp = addButtonPanel(Item::TJob, "RESET HOSTS","jobs_reset_avoid_hosts","Reset error hosts.","E");
+	bp = addButtonPanel(Item::TJob, tr("RESET HOSTS"),"jobs_reset_avoid_hosts","Reset error hosts.","E");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actResetErrorHosts()));
 
-	bp = addButtonPanel(Item::TJob, "RETRY TASKS","jobs_restart_error_tasks","Restart error tasks.","R");
+	bp = addButtonPanel(Item::TJob, tr("RETRY TASKS"),"jobs_restart_error_tasks","Restart error tasks.","R");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actRestartErrors()));
 
 	resetButtonsMenu();
 
-	bp = addButtonPanel(Item::TJob, "LISTEN","jobs_listen","Listen job running tasks ouput.");
+	bp = addButtonPanel(Item::TJob, tr("LISTEN"),"jobs_listen","Listen job running tasks ouput.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actListenJob()));
 
-	bp = addButtonPanel(Item::TAny, "CUSTOM DATA","node_custom_data","Edit node custom data.");
+	bp = addButtonPanel(Item::TAny, tr("CUSTOM DATA"),"node_custom_data","Edit node custom data.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actCustomData()));
 
 	if (m_listwork)
 	{
-		bp = addButtonPanel(Item::TAny, "DELETE","work_delete","Delete selected jobs or branches.","", true);
+		bp = addButtonPanel(Item::TAny, tr("DELETE"),"work_delete","Delete selected jobs or branches.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actDelete()));
 	}
 	else
 	{
-		bp = addButtonPanel(Item::TAny, "DELETE","jobs_delete","Delete selected jobs.","", true);
+			bp = addButtonPanel(Item::TAny, tr("DELETE"), "jobs_delete", "Delete selected jobs.", "", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actDelete()));
 	}
 
 	if (false == af::Environment::VISOR() && (false == m_listwork))
 	{
-		bp = addButtonPanel(Item::TJob, "DEL DONE","jobs_delete_done","Delete all done jobs.","",
+			bp = addButtonPanel(Item::TJob, tr("DEL DONE"), "jobs_delete_done", "Delete all done jobs.", "",
 				true /*double click*/, true /*always active*/);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actDeleteDone()));
 	}
@@ -196,30 +196,30 @@ ListJobs::ListJobs(QWidget * i_parent, bool i_listwork, const std::string & i_na
 		int max = 200;
 		if(( isTypeUsers()) && ( true != af::Environment::VISOR()))
 			max = af::Environment::getPriority();
-		addParam_Num(Item::TAny, "priority",              "Priority",           "Priority number", 0, max);
+		addParam_Num(Item::TAny, "priority",              tr("Priority"),           "Priority number", 0, max);
 	}
-	addParam_Str(Item::TAny, "annotation",                "Annotation",         "Annotation string");
+	addParam_Str(Item::TAny, "annotation",                tr("Annotation"),         "Annotation string");
 	addParam_separator();
-	addParam_MSI(Item::TJob, "pools",                     "Pools",              "Pools priorities");
+	addParam_MSI(Item::TJob, "pools",                     tr("Pools"),              "Pools priorities");
 	addParam_separator();
-	addParam_Tim(Item::TJob, "time_wait",                 "Wait Time",          "Time to wait to start");
+	addParam_Tim(Item::TJob, "time_wait",                 tr("Wait Time"),          "Time to wait to start");
 	addParam_separator();
-	addParam_Num(Item::TAny, "max_running_tasks",         "Maximum Running",    "Maximum running tasks number", -1, 1<<20);
-	addParam_Num(Item::TAny, "max_running_tasks_per_host","Max Run Per Host",   "Max run tasks on the same host", -1, 1<<20);
+	addParam_Num(Item::TAny, "max_running_tasks",         tr("Maximum Running"),    "Maximum running tasks number", -1, 1<<20);
+	addParam_Num(Item::TAny, "max_running_tasks_per_host",tr("Max Run Per Host"),   "Max run tasks on the same host", -1, 1<<20);
 	addParam_separator();
-	addParam_REx(Item::TAny, "hosts_mask",                "Hosts Mask",         "Host names pattern that job can run on");
-	addParam_REx(Item::TAny, "hosts_mask_exclude",        "Hosts Mask Exclude", "Host names pattern that job will not run");
-	addParam_REx(Item::TJob, "depend_mask",               "Depend Mask",        "Jobs name mask to wait");
-	addParam_REx(Item::TJob, "depend_mask_global",        "Global Depend",      "Depend mask for jobs from any user");
+	addParam_REx(Item::TAny, "hosts_mask",                tr("Hosts Mask"),         "Host names pattern that job can run on");
+	addParam_REx(Item::TAny, "hosts_mask_exclude",        tr("Hosts Mask Exclude"), "Host names pattern that job will not run");
+	addParam_REx(Item::TJob, "depend_mask",               tr("Depend Mask"),        "Jobs name mask to wait");
+	addParam_REx(Item::TJob, "depend_mask_global",        tr("Global Depend"),      "Depend mask for jobs from any user");
 	addParam_separator();
-	addParam_Num(Item::TBranch, "max_tasks_per_second",   "Max Tasks Per Second", "Maximum tasks starts per second", -1, 1<<20);
-	addParam_Hrs(Item::TJob,    "time_life",              "Life Time",            "Time to be deleted after creation");
+	addParam_Num(Item::TBranch, "max_tasks_per_second",   tr("Max Tasks Per Second"), "Maximum tasks starts per second", -1, 1<<20);
+	addParam_Hrs(Item::TJob,    "time_life",              tr("Life Time"),            "Time to be deleted after creation");
 	addParam_separator();
-	addParam_Num(Item::TJob, "need_power",      "Power Needed",       "Job need client that has at least this power", -1, 1<<30);
-	addParam_REx(Item::TJob, "need_os",         "OS Needed",          "Job will run only on this OS");
-	addParam_MiB(Item::TJob, "need_memory",     "Memory Needed",      "Job need client to have at least this free memory (GB)", -1, 1<<30);
-	addParam_GiB(Item::TJob, "need_hdd",        "HDD Needed",         "Job need client to have at least this free HDD space (GB)", -1, 1<<30);
-	addParam_REx(Item::TJob, "need_properties", "Properties Needed",  "Job need client that has such properties");
+	addParam_Num(Item::TJob, "need_power",      tr("Power Needed"),       "Job need client that has at least this power", -1, 1<<30);
+	addParam_REx(Item::TJob, "need_os",         tr("OS Needed"),          "Job will run only on this OS");
+	addParam_MiB(Item::TJob, "need_memory",     tr("Memory Needed"),      "Job need client to have at least this free memory (GB)", -1, 1<<30);
+	addParam_GiB(Item::TJob, "need_hdd",        tr("HDD Needed"),         "Job need client to have at least this free HDD space (GB)", -1, 1<<30);
+	addParam_REx(Item::TJob, "need_properties", tr("Properties Needed"),  "Job need client that has such properties");
 
 	m_paramspanel = new ParamsPanelJob();
 	initListNodes();
@@ -228,7 +228,7 @@ ListJobs::ListJobs(QWidget * i_parent, bool i_listwork, const std::string & i_na
 	timer->start( 1000 * af::Environment::getWatchRefreshGuiSec());
 	connect( timer, SIGNAL( timeout()), this, SLOT( repaintItems()));
 
-	this->setWindowTitleWithPrefix("Jobs:");
+	this->setWindowTitleWithPrefix(tr("Jobs:"));
 }
 
 ListJobs::~ListJobs()
@@ -281,7 +281,7 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 			menu.addSeparator();
 		}
 
-		submenu = new QMenu("Folders", this);
+		submenu = new QMenu(tr("Folders"), this);
 
 		QMapIterator<QString,QString> it( jobitem->folders);
 		while( it.hasNext())
@@ -380,31 +380,31 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 
 	if( af::Environment::VISOR() == false)
 	{
-		  action = new QAction( "Move Up", this);
+		action = new QAction(tr("Move Up"), this);
 		  connect( action, SIGNAL( triggered() ), this, SLOT( actMoveUp() ));
 		  menu.addAction( action);
-		  action = new QAction( "Move Down", this);
+		  action = new QAction(tr("Move Down"), this);
 		  connect( action, SIGNAL( triggered() ), this, SLOT( actMoveDown() ));
 		  menu.addAction( action);
-		  action = new QAction( "Move Top", this);
+		  action = new QAction(tr("Move Top"), this);
 		  connect( action, SIGNAL( triggered() ), this, SLOT( actMoveTop() ));
 		  menu.addAction( action);
-		  action = new QAction( "Move Bottom", this);
+		  action = new QAction(tr("Move Bottom"), this);
 		  connect( action, SIGNAL( triggered() ), this, SLOT( actMoveBottom() ));
 		  menu.addAction( action);
 	}
 	else
 	{
-		action = new QAction("Change Owner", this);
+		action = new QAction(tr("Change Owner"), this);
 		connect( action, SIGNAL( triggered() ), this, SLOT( actSetUser() ));
 		menu.addAction( action);
-		action = new QAction("Change Branch", this);
+		action = new QAction(tr("Change Branch"), this);
 		connect(action, SIGNAL(triggered()), this, SLOT(actChangeBranch()));
 		menu.addAction(action);
 	}
 	menu.addSeparator();
 	
-	submenu = new QMenu( "Annotation", this);
+	submenu = new QMenu(tr("Annotation"), this);
 	
 	const std::vector<std::string> annotations = af::Environment::getAnnotations();
 	for( int p = 0; p < annotations.size(); p++)
@@ -414,7 +414,7 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 		connect( action_str, SIGNAL( triggeredString(QString) ), this, SLOT( actAnnotate(QString) ));
 		submenu->addAction( action_str);
 	}
-	action = new QAction( "Custom", this);
+	action = new QAction( tr("Custom"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actAnnotate() ));
 	submenu->addAction( action);
 	
@@ -422,31 +422,31 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 	
 	menu.addSeparator();
 
-	submenu = new QMenu( "Set Parameter", this);
+	submenu = new QMenu( tr("Set Parameter"), this);
 
 	addMenuParameters(submenu);
 
 	submenu->addSeparator();
 
-	action = new QAction( "Preview Approval", this);
+	action = new QAction( tr("Preview Approval"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actPreviewApproval() ));
 	submenu->addAction( action);
-	action = new QAction( "No Preview Approval", this);
+	action = new QAction( tr("No Preview Approval"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actNoPreviewApproval() ));
 	submenu->addAction( action);
 
 	submenu->addSeparator();
 
-	action = new QAction( "Hidden", this);
+	action = new QAction( tr("Hidden"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSetHidden() ));
 	submenu->addAction( action);
-	action = new QAction( "Not Hidden", this);
+	action = new QAction( tr("Not Hidden"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actUnsetHidden() ));
 	submenu->addAction( action);
 
 	submenu->addSeparator();
 
-	action = new QAction( "Post Command", this);
+	action = new QAction( tr("Post Command"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actPostCommand() ));
 	submenu->addAction( action);
 
@@ -459,7 +459,7 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 	{
 		if( jobitem->getBlocksNum() > 1)
 		{
-			submenu = new QMenu( "Tasks Blocks", this);
+			submenu = new QMenu(tr("Tasks Blocks"), this);
 			for (int b = -1; b < jobitem->getBlocksNum(); b++)
 			{
 				QMenu * subsubmenu = new QMenu(b == -1 ? QString("_to_all_") : jobitem->getBlockName(b), this);
@@ -478,14 +478,14 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 		}
 		else
 		{
-			submenu = new QMenu("Tasks Block", this);
+			submenu = new QMenu(tr("Tasks Block"), this);
 			jobitem->getBlockInfo(0)->generateMenu(submenu);
 			connect(submenu, SIGNAL(aboutToShow()), this, SLOT(slot_BlocksMenuNotAll()));
 		}
 	}
 	else
 	{
-		submenu = new QMenu("All Selected Blocks", this);
+		submenu = new QMenu(tr("All Selected Blocks"), this);
 		jobitem->getBlockInfo(0)->generateMenu( submenu);
 		connect(submenu, SIGNAL(aboutToShow()), this, SLOT(slot_BlocksMenuForAll()));
 	}
@@ -493,7 +493,7 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 
 	menu.addSeparator();
 
-	action = new QAction( "Listen", this);
+	action = new QAction( tr("Listen"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actListenJob() ));
 	menu.addAction( action);
 
@@ -502,15 +502,15 @@ void ListJobs::contextMenuEvent( QContextMenuEvent *event)
 	// System job ID is 1, and can not be deleted
 	if( jobitem->getId() != 1 )
 	{
-		submenu = new QMenu( "Delete", this);
+		submenu = new QMenu( tr("Delete"), this);
 
-		action = new QAction( "Delete Selected", this);
+		action = new QAction(tr("Delete Selected"), this);
 		connect( action, SIGNAL( triggered() ), this, SLOT( actDelete()));
 		submenu->addAction( action);
 
 		if (false == af::Environment::VISOR())
 		{
-			action = new QAction("Delete All Done", this);
+			action = new QAction(tr("Delete All Done"), this);
 			connect(action, SIGNAL(triggered()), this, SLOT(actDeleteDone()));
 			submenu->addAction(action);
 		}
@@ -672,7 +672,7 @@ void ListJobs::calcTotals()
 
 	if (numjobs == 0)
 	{
-		this->setWindowTitleWithPrefix("Jobs: (none)");
+		this->setWindowTitleWithPrefix(tr("Jobs: (none)"));
 		return;
 	}
 
@@ -697,16 +697,14 @@ void ListJobs::calcTotals()
 
 	if (blocksrun)
 	{
-		QString title = QString("Jobs:%1").arg(numjobs);
-		if (error)
-			title += QString(" ERROR:%1").arg(error);
-		title += QString(" Run:%1 %2%").arg(running).arg(percent / blocksrun);
-		if (done)
-			title += QString(" Done:%1").arg(done);
+		QString title = tr("Jobs:") + QString("%1").arg(numjobs);
+		if (error) title += tr(" ERROR:") + QString("%1").arg(error);
+		title += tr(" Run:") + QString("%1 %2%").arg(running).arg(percent / blocksrun);
+		if (done) title += tr(" Done:") + QString("%1").arg(done);
 		this->setWindowTitleWithPrefix(title);
 	}
 	else
-		this->setWindowTitleWithPrefix(QString("Jobs: %1 Done").arg(numjobs));
+		this->setWindowTitleWithPrefix(tr("Jobs:") + QString(" %1 ").arg(numjobs) + tr("Done"));
 }
 
 void ListJobs::actMoveUp()     { moveJobs("move_jobs_up"    ); }
@@ -759,7 +757,7 @@ void ListJobs::actDeleteDone()
 
 	if( ids.size() == 0 )
 	{
-		displayWarning("No done jobs found.");
+		displayWarning(tr("No done jobs found."));
 		return;
 	}
 
@@ -804,7 +802,7 @@ void ListJobs::actChangeBranch()
 	if( jobitem == NULL ) return;
 	QString current = jobitem->branch;
 	bool ok;
-	QString branch = QInputDialog::getText(this, "Change Branch", "Branch", QLineEdit::Normal, current, &ok);
+	QString branch = QInputDialog::getText(this, tr("Change Branch"), "Branch", QLineEdit::Normal, current, &ok);
 	if( !ok) return;
 	setParameterQStr(Item::TJob, "branch", branch);
 }
@@ -816,7 +814,7 @@ void ListJobs::actPostCommand()
 	QString current = jobitem->cmd_post;
 
 	bool ok;
-	QString cmd = QInputDialog::getText(this, "Change Post Command", "Enter Command", QLineEdit::Normal, current, &ok);
+	QString cmd = QInputDialog::getText(this, tr("Change Post Command"), "Enter Command", QLineEdit::Normal, current, &ok);
 	if( !ok) return;
 
 	setParameterQStrEscape(Item::TJob, "command_post", cmd);

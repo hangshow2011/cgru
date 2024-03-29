@@ -54,14 +54,14 @@ ListMonitors::ListMonitors( QWidget* parent):
 	// Add left panel buttons:
 	ButtonPanel * bp;
 
-	bp = addButtonPanel(Item::TMonitor, "LOG","monitors_log","Show monitor log.");
+	bp = addButtonPanel(Item::TMonitor, tr("LOG"),"monitors_log","Show monitor log.");
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actRequestLog()));
 
-	bp = addButtonPanel(Item::TMonitor, "EXIT","monitors_exit","Exit monitor.","", true);
+	bp = addButtonPanel(Item::TMonitor, tr("EXIT"),"monitors_exit","Exit monitor.","", true);
 	connect( bp, SIGNAL( sigClicked()), this, SLOT( actExit()));
 
 
-	this->setWindowTitleWithPrefix("Monitors");
+	this->setWindowTitleWithPrefix(tr("Monitors"));
 
 	initListNodes();
 }
@@ -75,19 +75,19 @@ void ListMonitors::contextMenuEvent( QContextMenuEvent *event)
 	QMenu menu(this);
 	QAction *action;
 
-	action = new QAction( "Show Log", this);
+	action = new QAction( tr("Show Log"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actRequestLog() ));
 	menu.addAction( action);
 
 	menu.addSeparator();
 
-	action = new QAction( "Send Message", this);
+	action = new QAction( tr("Send Message"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSendMessage() ));
 	menu.addAction( action);
 
 	menu.addSeparator();
 
-	action = new QAction( "Exit Monitor", this);
+	action = new QAction( tr("Exit Monitor"), this);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actExit() ));
 	menu.addAction( action);
 
@@ -163,7 +163,7 @@ void ListMonitors::actSendMessage()
 	if( item == NULL ) return;
 
 	bool ok;
-	QString text = QInputDialog::getText(this, "Send Message", "Enter Text", QLineEdit::Normal, "", &ok);
+	QString text = QInputDialog::getText(this, "Send Message", tr("Enter Text"), QLineEdit::Normal, "", &ok);
 	if( !ok) return;
 
 	std::ostringstream str;

@@ -36,12 +36,12 @@ ParamsPanelJob::ParamsPanelJob():
 	QHBoxLayout * hlayout = new QHBoxLayout();
 	m_folders_layout->addLayout(hlayout);
 
-	QLabel * folders_label = new QLabel("<b>Folders</b>");
+	QLabel *folders_label = new QLabel("<b>" + tr("Folders") + "</b>");
 	hlayout->addWidget(folders_label);
 
-	m_rules_btn = new QPushButton("RULES");
+	m_rules_btn = new QPushButton(tr("RULES"));
 	hlayout->addWidget(m_rules_btn);
-	m_rules_btn->setToolTip("Open in WEB browser");
+	m_rules_btn->setToolTip(tr("Open in WEB browser"));
 	m_rules_btn->setHidden(true);
 
 	m_folders_root = new QLabel();
@@ -63,7 +63,7 @@ ParamsPanelJob::ParamsPanelJob():
 	m_blocks_layout->setContentsMargins(0, 0, 0, 0);
 	m_blocks_layout->setSpacing(2);
 
-	m_blocks_label = new QLabel("<b>Blocks</b>");
+	m_blocks_label = new QLabel("<b>" + tr("Blocks") + "</b>");
 	m_blocks_label->setContentsMargins(10, 4, 10, 4);
 	m_blocks_layout->addWidget(m_blocks_label);
 }
@@ -386,12 +386,12 @@ BlockCaptionWidget::BlockCaptionWidget(const BlockInfo * i_info):
 	BlockNameLabel * label = new BlockNameLabel(m_info->getName());
 	h_layout->addWidget(label);
 
-	m_btn_open = new QPushButton("open");
+	m_btn_open = new QPushButton(tr("open"));
 	m_btn_open->setFixedSize(48, 16);
 	h_layout->addWidget(m_btn_open);
 	connect(m_btn_open, SIGNAL(clicked()), this, SLOT(slot_OpenInfo()));
 
-	m_btn_close = new QPushButton("close");
+	m_btn_close = new QPushButton(tr("close"));
 	m_btn_close->setFixedSize(48, 16);
 	m_btn_close->setHidden(true);
 	h_layout->addWidget(m_btn_close);
@@ -457,9 +457,9 @@ BlockInfoWidget::BlockInfoWidget(const BlockInfo * i_info):
 	// Tickets:
 	QHBoxLayout * tcaplayout = new QHBoxLayout();
 	layout->addLayout(tcaplayout);
-	tcaplayout->addWidget(new QLabel("<b>Tickets</b>:"));
+	tcaplayout->addWidget(new QLabel("<b>" + tr("Tickets") + "</b>:"));
 
-	m_btn_ticket_add = new QPushButton("add");
+	m_btn_ticket_add = new QPushButton(tr("add"));
 	m_btn_ticket_add->setFixedSize(36, 16);
 	connect(m_btn_ticket_add, SIGNAL(clicked()), m_info, SLOT(slot_BlockTicketAdd()));
 	tcaplayout->addWidget(m_btn_ticket_add);
@@ -470,9 +470,9 @@ BlockInfoWidget::BlockInfoWidget(const BlockInfo * i_info):
 	// Parameters:
 	QHBoxLayout * pcaplayout = new QHBoxLayout();
 	layout->addLayout(pcaplayout);
-	pcaplayout->addWidget(new QLabel("<b>Block Parameters</b>"));
+	pcaplayout->addWidget(new QLabel("<b>" + tr("Block Parameters") + "</b>"));
 
-	m_btn_params_show_all = new QPushButton("show all");
+	m_btn_params_show_all = new QPushButton(tr("show all"));
 	m_btn_params_show_all->setFixedSize(64, 16);
 	connect(m_btn_params_show_all, SIGNAL(clicked()), this, SLOT(slot_BlockParamsShowAll()));
 	pcaplayout->addWidget(m_btn_params_show_all);

@@ -8,12 +8,15 @@
 #include <QtGui/QFont>
 #include <QtGui/QPalette>
 #include <QtNetwork/QHostAddress>
+#include <QtCore/QCoreApplication>
 
 class QByteArray;
 class QDomElement;
 
 class afqt::QEnvironment
 {
+	Q_DECLARE_TR_FUNCTIONS(QEnvironment);
+
 public:
 	QEnvironment( const QString & i_name);
 	~QEnvironment();

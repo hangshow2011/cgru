@@ -5,12 +5,15 @@
 #include <QItemDelegate>
 #include <QStyleOption>
 #include <QMenu>
+#include <QtCore/QCoreApplication>
 
 class ItemButton;
 class MainWidget;
 
 class Item
 {
+	Q_DECLARE_TR_FUNCTIONS(Item);
+
 public:
 	enum EType {
 		TNone    = 0,

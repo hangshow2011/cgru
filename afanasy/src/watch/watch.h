@@ -5,6 +5,7 @@
 
 #include <QtCore/QList>
 #include <QtCore/QStringList>
+#include <QtCore/QCoreApplication>
 
 class QApplication;
 class QKeyEvent;
@@ -22,6 +23,8 @@ class WndList;
 
 class Watch
 {
+	Q_DECLARE_TR_FUNCTIONS(Watch);
+
 public:
 	Watch( Dialog * pDialog, QApplication * pApplication);
 	~Watch();
@@ -46,8 +49,8 @@ public:
 	static bool isSith();
 	static bool notSith();
 
-	static const QString BtnName[WLAST];
-	static const QString WndName[WLAST];
+	static QString BtnName[WLAST];
+	static QString WndName[WLAST];
 
 	inline static Dialog  * getDialog() {return ms_d;}
 	static QWidget * getWidget();

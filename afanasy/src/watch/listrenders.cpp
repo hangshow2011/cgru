@@ -87,106 +87,106 @@ ListRenders::ListRenders( QWidget* parent):
 	// Add left panel buttons:
 	ButtonPanel * bp; ButtonsMenu * bm;
 
-	bp = addButtonPanel(Item::TAny, "LOG","renders_log","Get render log.");
+	bp = addButtonPanel(Item::TAny, tr("LOG"),"renders_log","Get render log.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRequestLog()));
 
 	if( af::Environment::GOD())
 	{
-		bp = addButtonPanel(Item::TPool, "ADD POOL","pools_add","Add a new child pool.");
+		bp = addButtonPanel(Item::TPool, tr("ADD POOL"),"pools_add","Add a new child pool.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actAddPool()));
 	}
 
-	bp = addButtonPanel(Item::TRender, "TASKS LOG","renders_tasks_log","Get tasks log.");
+	bp = addButtonPanel(Item::TRender, tr("TASKS LOG"),"renders_tasks_log","Get tasks log.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRequestTasksLog()));
 
-	bp = addButtonPanel(Item::TRender, "nimby","renders_nimby","Set nimby.","M");
+	bp = addButtonPanel(Item::TRender, tr("nimby"),"renders_nimby","Set nimby.","M");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actNimby()));
 
-	bp = addButtonPanel(Item::TRender, "NIMBY","renders_NIMBY","Set NIMBY.","N");
+	bp = addButtonPanel(Item::TRender, tr("NIMBY"),"renders_NIMBY","Set NIMBY.","N");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actNIMBY()));
 
-	bp = addButtonPanel(Item::TRender, "FREE","renders_free","Set free.","F");
+	bp = addButtonPanel(Item::TRender, tr("FREE"),"renders_free","Set free.","F");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actFree()));
 
-	bm = addButtonsMenu(Item::TRender, "Eject Tasks","Eject tasks from render.");
+	bm = addButtonsMenu(Item::TRender, tr("Eject Tasks"),"Eject tasks from render.");
 
-	bp = addButtonPanel(Item::TAny, "ALL","renders_eject_all","Eject all tasks.","", true);
+	bp = addButtonPanel(Item::TAny, tr("ALL"),"renders_eject_all","Eject all tasks.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actEjectTasks()));
 
-	bp = addButtonPanel(Item::TAny, "NOT MY","renders_eject_notmy","Eject not my tasks.","", true);
+	bp = addButtonPanel(Item::TAny, tr("NOT MY"),"renders_eject_notmy","Eject not my tasks.","", true);
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actEjectNotMyTasks()));
 
 	resetButtonsMenu();
 
-	bp = addButtonPanel(Item::TAny, "HEAL","farm_heal_sick","Heal sick renders.","H");
+	bp = addButtonPanel(Item::TAny, tr("HEAL"),"farm_heal_sick","Heal sick renders.","H");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actHealSick()));
 
 	if( af::Environment::GOD())
 	{
-		bm = addButtonsMenu(Item::TRender, "Pool","Change render pool.");
+		bm = addButtonsMenu(Item::TRender, tr("Pool"),"Change render pool.");
 
-		bp = addButtonPanel(Item::TRender, "SET","renders_pool_set","Set render pool.","", false);
+		bp = addButtonPanel(Item::TRender, tr("SET"),"renders_pool_set","Set render pool.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actRenderSetPool()));
 
-		bp = addButtonPanel(Item::TRender, "REASSIGN","renders_pool_reassign","Re-assign render pool.","", true);
+		bp = addButtonPanel(Item::TRender, tr("REASSIGN"),"renders_pool_reassign","Re-assign render pool.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actRenderReAssing()));
 
 		resetButtonsMenu();
 
-		bm = addButtonsMenu(Item::TAny, "Services","Add/Remove/Disable service(s).");
+		bm = addButtonsMenu(Item::TAny, tr("Services"),"Add/Remove/Disable service(s).");
 
-		bp = addButtonPanel(Item::TAny, "ADD","service_add","Add a service.","", false);
+		bp = addButtonPanel(Item::TAny, tr("ADD"),"service_add","Add a service.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_ServiceAdd()));
 
-		bp = addButtonPanel(Item::TAny, "REMOVE","service_remove","Remove services by mask.","", false);
+		bp = addButtonPanel(Item::TAny, tr("REMOVE"),"service_remove","Remove services by mask.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actServiceRemove()));
 
-		bp = addButtonPanel(Item::TAny, "ENABLE","service_enable","Enable services by mask.","", false);
+		bp = addButtonPanel(Item::TAny, tr("ENABLE"),"service_enable","Enable services by mask.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actServiceEnable()));
 
-		bp = addButtonPanel(Item::TAny, "DISABLE","service_disable","Disable services by mask.","", false);
+		bp = addButtonPanel(Item::TAny, tr("DISABLE"),"service_disable","Disable services by mask.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_ServiceDisable()));
 
-		bp = addButtonPanel(Item::TAny, "CLEAR","clear_services",
+		bp = addButtonPanel(Item::TAny, tr("CLEAR"),"clear_services",
 				"Clear services.\nServices settings will be taken from the parent pool.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actClearServices()));
 
-		bm = addButtonsMenu(Item::TAny, "Tickets","Edit tickets");
+		bm = addButtonsMenu(Item::TAny, tr("Tickets"),"Edit tickets");
 
-		bp = addButtonPanel(Item::TPool, "Edit Pool","ticket_pool_edit","Edit pool ticket.","", false);
+		bp = addButtonPanel(Item::TPool, tr("Edit Pool"),"ticket_pool_edit","Edit pool ticket.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_TicketPoolEdit()));
 
-		bp = addButtonPanel(Item::TAny, "Edit Host","ticket_host_edit","Edit host ticket.","", false);
+		bp = addButtonPanel(Item::TAny, tr("Edit Host"),"ticket_host_edit","Edit host ticket.","", false);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_TicketHostEdit()));
 
 		resetButtonsMenu();
 
-		bm = addButtonsMenu(Item::TPool, "New Render","New render default state.");
+		bm = addButtonsMenu(Item::TPool, tr("New Render"),"New render default state.");
 
-		bp = addButtonPanel(Item::TPool, "Nimby","new_render_nimby","New render will be registered in NIMBY state.","", true);
+		bp = addButtonPanel(Item::TPool, tr("Nimby"),"new_render_nimby","New render will be registered in NIMBY state.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actNewRenderNimby()));
 
-		bp = addButtonPanel(Item::TPool, "Free","new_render_free","New render will NOT be registered in NIMBY state.","", true);
+		bp = addButtonPanel(Item::TPool, tr("Free"),"new_render_free","New render will NOT be registered in NIMBY state.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actNewRenderFree()));
 
-		bp = addButtonPanel(Item::TPool, "Paused","new_render_paused","New render will be registered in Paused state.","", true);
+		bp = addButtonPanel(Item::TPool, tr("Paused"),"new_render_paused","New render will be registered in Paused state.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actNewRenderPaused()));
 
-		bp = addButtonPanel(Item::TPool, "Ready","new_render_free","New render will NOT be registered in Paused state.","", true);
+		bp = addButtonPanel(Item::TPool, tr("Ready"),"new_render_free","New render will NOT be registered in Paused state.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actNewRenderReady()));
 
 		resetButtonsMenu();
 
-		bp = addButtonPanel(Item::TAny, "PAUSE","farm_pause","Pause selected renders.","P");
+		bp = addButtonPanel(Item::TAny, tr("PAUSE"),"farm_pause","Pause selected renders.","P");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actSetPaused()));
 
-		bp = addButtonPanel(Item::TAny, "START","farm_unpause","Start (Unpause) selected renders.","S");
+		bp = addButtonPanel(Item::TAny, tr("START"),"farm_unpause","Start (Unpause) selected renders.","S");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actUnsetPaused()));
 
-        bp = addButtonPanel(Item::TPool, "CUSTOM DATA","node_custom_data","Edit node custom data.");
+        bp = addButtonPanel(Item::TPool, tr("CUSTOM DATA"),"node_custom_data","Edit node custom data.");
         connect(bp, SIGNAL(sigClicked()), this, SLOT(actCustomData()));
 
-		bp = addButtonPanel(Item::TAny, "DELETE","farm_delete","Delete pool or render.","", true);
+		bp = addButtonPanel(Item::TAny, tr("DELETE"),"farm_delete","Delete pool or render.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actDelete()));
 	}
 
@@ -194,54 +194,54 @@ ListRenders::ListRenders( QWidget* parent):
 
 	if (af::Environment::GOD())
 	{
-		addParam_REx(Item::TPool, "pattern",           "Pattern",           "Host names pattern regular expression");
-		addParam_Num(Item::TAny,  "priority",          "Priority",          "Priority number", 0, 250);
-		addParam_Num(Item::TAny,  "max_tasks_host",    "Host Max Tasks",    "Host maximum running tasks", -1, 99);
-		addParam_Num(Item::TAny,  "capacity_host",     "Host Capacity",     "Host capacity", -1, 1<<30);
-		addParam_Num(Item::TPool, "sick_errors_count", "Sick Errors Count", "Number or errors for render to get sick.", -1, 1<<10);
+		addParam_REx(Item::TPool, "pattern",           tr("Pattern"),           "Host names pattern regular expression");
+		addParam_Num(Item::TAny,  "priority",          tr("Priority"),          "Priority number", 0, 250);
+		addParam_Num(Item::TAny,  "max_tasks_host",    tr("Host Max Tasks"),    "Host maximum running tasks", -1, 99);
+		addParam_Num(Item::TAny,  "capacity_host",     tr("Host Capacity"),     "Host capacity", -1, 1<<30);
+		addParam_Num(Item::TPool, "sick_errors_count", tr("Sick Errors Count"), "Number or errors for render to get sick.", -1, 1<<10);
 		addParam_separator();
-		addParam_Str(Item::TAny,  "annotation",     "Annotation",     "Annotation string");
+		addParam_Str(Item::TAny,  "annotation",     tr("Annotation"),     "Annotation string");
 		addParam_separator();
-		addParam_Num(Item::TAny,  "power_host",      "Host Power",      "Host some custom \"power\" integer", -1, 1<<30);
-		addParam_Str(Item::TAny,  "properties_host", "Host Properties", "Host some custom \"properties\" string");
+		addParam_Num(Item::TAny,  "power_host",      tr("Host Power"),      "Host some custom \"power\" integer", -1, 1<<30);
+		addParam_Str(Item::TAny,  "properties_host", tr("Host Properties"), "Host some custom \"properties\" string");
 		addParam_separator();
-		addParam_separator();
-
-		addParam_Hrs(Item::TPool, "idle_free_time",     "Idle Free Time",  "Unset Nimby idle time.");
-		addParam_Hrs(Item::TPool, "busy_nimby_time",    "Busy Nimby Time", "Set Nimby busy time.");
-		addParam_Num(Item::TPool, "idle_cpu",           "Idle CPU",        "Idle CPU usage percentage.",          -1, 100);
-		addParam_Num(Item::TPool, "busy_cpu",           "Busy CPU",        "Busy CPU usage percentage.",          -1, 100);
-		addParam_Num(Item::TPool, "idle_mem",           "Idle MEM",        "Idle memory usage percentage.",       -1, 100);
-		addParam_Num(Item::TPool, "busy_mem",           "Busy MEM",        "Busy memory usage percentage.",       -1, 100);
-		addParam_Num(Item::TPool, "idle_swp",           "Idle SWAP",       "Idle swap usage percentage.",         -1, 100);
-		addParam_Num(Item::TPool, "busy_swp",           "Busy SWAP",       "Busy swap usage percentage.",         -1, 100);
-		addParam_Num(Item::TPool, "idle_hddgb",         "Idle HDD GB",     "Idle HDD free space (GB).",           -1, 1<<30);
-		addParam_Num(Item::TPool, "busy_hddgb",         "Busy HDD GB",     "Busy HDD free space (GB).",           -1, 1<<30);
-		addParam_Num(Item::TPool, "idle_hddio",         "Idle HDD I/O",    "Idle HDD I/O usage percentage.",      -1, 100);
-		addParam_Num(Item::TPool, "busy_hddio",         "Busy HDD I/O",    "Busy HDD I/O usage percentage.",      -1, 100);
-		addParam_Num(Item::TPool, "idle_netmbs",        "Idle NET MB/s",   "Idle network usage (MBytes/second).", -1, 1<<30);
-		addParam_Num(Item::TPool, "busy_netmbs",        "Busy NET MB/s",   "Busy network usage (MBytes/second).", -1, 1<<30);
-		addParam_Hrs(Item::TPool, "idle_wolsleep_time", "Idle WOL Sleep",  "WOL sleep after this idle time.");
-
 		addParam_separator();
 
-		addParam_Num(Item::TPool, "heartbeat_sec", "Heart Beat",
+		addParam_Hrs(Item::TPool, "idle_free_time",     tr("Idle Free Time"),  "Unset Nimby idle time.");
+		addParam_Hrs(Item::TPool, "busy_nimby_time",    tr("Busy Nimby Time"), "Set Nimby busy time.");
+		addParam_Num(Item::TPool, "idle_cpu",           tr("Idle CPU"),        "Idle CPU usage percentage.",          -1, 100);
+		addParam_Num(Item::TPool, "busy_cpu",           tr("Busy CPU"),        "Busy CPU usage percentage.",          -1, 100);
+		addParam_Num(Item::TPool, "idle_mem",           tr("Idle MEM"),        "Idle memory usage percentage.",       -1, 100);
+		addParam_Num(Item::TPool, "busy_mem",           tr("Busy MEM"),        "Busy memory usage percentage.",       -1, 100);
+		addParam_Num(Item::TPool, "idle_swp",           tr("Idle SWAP"),       "Idle swap usage percentage.",         -1, 100);
+		addParam_Num(Item::TPool, "busy_swp",           tr("Busy SWAP"),       "Busy swap usage percentage.",         -1, 100);
+		addParam_Num(Item::TPool, "idle_hddgb",         tr("Idle HDD GB"),     "Idle HDD free space (GB).",           -1, 1<<30);
+		addParam_Num(Item::TPool, "busy_hddgb",         tr("Busy HDD GB"),     "Busy HDD free space (GB).",           -1, 1<<30);
+		addParam_Num(Item::TPool, "idle_hddio",         tr("Idle HDD I/O"),    "Idle HDD I/O usage percentage.",      -1, 100);
+		addParam_Num(Item::TPool, "busy_hddio",         tr("Busy HDD I/O"),    "Busy HDD I/O usage percentage.",      -1, 100);
+		addParam_Num(Item::TPool, "idle_netmbs",        tr("Idle NET MB/s"),   "Idle network usage (MBytes/second).", -1, 1<<30);
+		addParam_Num(Item::TPool, "busy_netmbs",        tr("Busy NET MB/s"),   "Busy network usage (MBytes/second).", -1, 1<<30);
+		addParam_Hrs(Item::TPool, "idle_wolsleep_time", tr("Idle WOL Sleep"),  "WOL sleep after this idle time.");
+
+		addParam_separator();
+
+		addParam_Num(Item::TPool, "heartbeat_sec", tr("Heart Beat"),
 				QString("Render heart beat seconds (default is %1).)").arg(AFRENDER::HEARTBEAT_SEC), -1, 1<<6);
-		addParam_Num(Item::TPool, "resources_update_period", "Resources Update",
+		addParam_Num(Item::TPool, "resources_update_period", tr("Resources Update"),
 				QString("Render resources update period (default is %1).)").arg(AFRENDER::RESOURCES_UPDATE_PERIOD), -1, 1<<4);
-		addParam_Num(Item::TPool, "zombie_time", "Zombie Time",
+		addParam_Num(Item::TPool, "zombie_time", tr("Zombie Time"),
 				QString("Render zombie time seconds (default is %1).").arg(AFRENDER::ZOMBIETIME), -1, 1<<15);
 
 		addParam_separator();
 
-		addParam_Num(Item::TPool, "no_task_event_time", "No Task Event",
+		addParam_Num(Item::TPool, "no_task_event_time", tr("No Task Event"),
 				QString("Render with no task event seconds (default is -1 = disabled)."), -1, 1<<15);
-		addParam_Num(Item::TPool, "overload_event_time", "Overload Event",
+		addParam_Num(Item::TPool, "overload_event_time", tr("Overload Event"),
 				QString("Render with resources overload repeat event emit seconds (default is -1 = disabled)."), -1, 1<<15);
 
 		addParam_separator();
 
-		addParam_Num(Item::TPool, "exit_no_task_time", "Exit No Task",
+		addParam_Num(Item::TPool, "exit_no_task_time", tr("Exit No Task"),
 				QString("Render exit with no task seconds (default is -1 = disabled)."), -1, 1<<15);
 	}
 
@@ -346,20 +346,20 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 		i_menu->addSeparator();
 	}
 
-	action = new QAction( "Show Log", this);
+	action = new QAction( tr("Show Log"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actRequestLog()));
 	i_menu->addAction(action);
 
-	action = new QAction( "Tasks Log", this);
+	action = new QAction( tr("Tasks Log"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actRequestTasksLog()));
 	i_menu->addAction(action);
 
-	action = new QAction( "Show Info", this);
+	action = new QAction( tr("Show Info"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actRequestInfo()));
 	i_menu->addAction(action);
 	
 	std::list<const af::TaskExec*> l = render->getTasks();
-	submenu = new QMenu( l.size() > 1 ? "Running Tasks" : "Running Task", this);
+	submenu = new QMenu( l.size() > 1 ? tr("Running Tasks") : tr("Running Task"), this);
 	submenu->setEnabled( render->hasTasks());
 
 	std::list<const af::TaskExec*>::const_iterator it;
@@ -390,35 +390,35 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 	{
 		i_menu->addSeparator();
 
-		action = new QAction( "Set NIMBY", this);
+		action = new QAction( tr("Set NIMBY"), this);
 		if( selectedItemsCount == 1) action->setEnabled(false == render->isNIMBY());
 		connect(action, SIGNAL(triggered()), this, SLOT(actNIMBY()));
 		i_menu->addAction(action);
 
-		action = new QAction( "Set nimby", this);
+		action = new QAction( tr("Set nimby"), this);
 		if( selectedItemsCount == 1) action->setEnabled(false == render->isNimby());
 		connect(action, SIGNAL(triggered()), this, SLOT(actNimby()));
 		i_menu->addAction(action);
 
-		action = new QAction( "Set Free", this);
+		action = new QAction( tr("Set Free"), this);
 		if( selectedItemsCount == 1) action->setEnabled(render->isNimby() || render->isNIMBY());
 		connect(action, SIGNAL(triggered()), this, SLOT(actFree()));
 		i_menu->addAction(action);
 
-		action = new QAction( "Set User", this);
+		action = new QAction( tr("Set User"), this);
 		connect(action, SIGNAL(triggered()), this, SLOT(actUser()));
 		i_menu->addAction(action);
 
 		i_menu->addSeparator();
 
-		submenu = new QMenu( "Eject", this);
+		submenu = new QMenu( tr("Eject"), this);
 
-		action = new QAction( "All Tasks", this);
+		action = new QAction( tr("All Tasks"), this);
 		if( selectedItemsCount == 1) action->setEnabled( render->hasTasks());
 		connect(action, SIGNAL(triggered()), this, SLOT(actEjectTasks()));
 		submenu->addAction(action);
 
-		action = new QAction( "Not My Tasks", this);
+		action = new QAction( tr("Not My Tasks"), this);
 		if( selectedItemsCount == 1) action->setEnabled( render->hasTasks());
 		connect(action, SIGNAL(triggered()), this, SLOT(actEjectNotMyTasks()));
 		submenu->addAction(action);
@@ -431,7 +431,7 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 	if (af::Environment::getRenderCmds().size() > 0)
 	{
 		i_menu->addSeparator();
-		custom_submenu = new QMenu("Custom", this);
+		custom_submenu = new QMenu(tr("Custom"), this);
 		for (std::vector<std::string>::const_iterator it = af::Environment::getRenderCmds().begin(); it != af::Environment::getRenderCmds().end(); it++, custom_cmd_index++)
 		{
 			ActionId * actionid = new ActionId( custom_cmd_index, QString("%1").arg( afqt::stoq(*it)), this);
@@ -445,7 +445,7 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 		if (custom_submenu == NULL)
 		{
 			i_menu->addSeparator();
-			custom_submenu = new QMenu( "Custom", this);
+			custom_submenu = new QMenu( tr("Custom"), this);
 		}
 
 		for (std::vector<std::string>::const_iterator it = af::Environment::getRenderCmdsAdmin().begin();
@@ -470,23 +470,23 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 
 	i_menu->addSeparator();
 
-	submenu = new QMenu("Administrate", this);
+	submenu = new QMenu(tr("Administrate"), this);
 	i_menu->addMenu( submenu);
 
-	action = new QAction( "Annotate", this);
+	action = new QAction( tr("Annotate"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actAnnotate()));
 	submenu->addAction(action);
-	action = new QAction( "Set Priority", this);
+	action = new QAction( tr("Set Priority"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actPriority()));
 	submenu->addAction(action);
 
 	submenu->addSeparator();
 
-	action = new QAction("Set Paused", this);
+	action = new QAction(tr("Set Paused"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actSetPaused()));
 	submenu->addAction(action);
 
-	action = new QAction("Unset Paused", this);
+	action = new QAction(tr("Unset Paused"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actUnsetPaused()));
 	submenu->addAction(action);
 
@@ -496,37 +496,37 @@ void ListRenders::generateRenderMenu(QMenu * i_menu)
 
 	submenu->addSeparator();
 
-	action = new QAction("Exit Client", this);
+	action = new QAction(tr("Exit Client"), this);
 	if (selectedItemsCount == 1) action->setEnabled(render->isOnline());
 	connect(action, SIGNAL(triggered()), this, SLOT(actExit()));
 	submenu->addAction(action);
 
-	action = new QAction("Delete Client", this);
+	action = new QAction(tr("Delete Client"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actDelete()));
 	if (selectedItemsCount == 1) action->setEnabled(false == render->isOnline());
 	submenu->addAction(action);
 
 	submenu->addSeparator();
 
-	action = new QAction("Wake-On-Lan Sleep", this);
+	action = new QAction(tr("Wake-On-Lan Sleep"), this);
 	if (selectedItemsCount == 1)
 		action->setEnabled(render->isOnline() && (false == render->isBusy()) && (false == render->isWOLFalling()));
 	connect(action, SIGNAL(triggered()), this, SLOT(actWOLSleep()));
 	submenu->addAction(action);
 
-	action = new QAction("Wake-On-Lan Wake", this);
+	action = new QAction(tr("Wake-On-Lan Wake"), this);
 	if (selectedItemsCount == 1) action->setEnabled(render->isOffline());
 	connect(action, SIGNAL(triggered()), this, SLOT(actWOLWake()));
 	submenu->addAction(action);
 
 	submenu->addSeparator();
 
-	action = new QAction("Reboot Machine", this);
+	action = new QAction(tr("Reboot Machine"), this);
 	if( selectedItemsCount == 1) action->setEnabled(render->isOnline());
 	connect(action, SIGNAL(triggered()), this, SLOT(actReboot()));
 	submenu->addAction(action);
 
-	action = new QAction("Shutdown Machine", this);
+	action = new QAction(tr("Shutdown Machine"), this);
 	if( selectedItemsCount == 1) action->setEnabled(render->isOnline());
 	connect(action, SIGNAL(triggered()), this, SLOT(actShutdown()));
 	submenu->addAction(action);
@@ -538,22 +538,22 @@ void ListRenders::generatePoolMenu(QMenu * i_menu)
 		return;
 
 	QAction * action;
-	QMenu * submenu = new QMenu("Administrate", this);
+	QMenu * submenu = new QMenu(tr("Administrate"), this);
 	i_menu->addMenu(submenu);
 
 	generateCommonMenuItems(submenu);
 
 	submenu->addSeparator();
 
-	action = new QAction("Eject Tasks", this);
+	action = new QAction(tr("Eject Tasks"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actEjectTasks()));
 	submenu->addAction(action);
 
-	action = new QAction("Exit Renders", this);
+	action = new QAction(tr("Exit Renders"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actExit()));
 	submenu->addAction(action);
 
-	action = new QAction("Delete Renders", this);
+	action = new QAction(tr("Delete Renders"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actDeleteRenders()));
 	submenu->addAction(action);
 }
@@ -562,13 +562,13 @@ void ListRenders::generateCommonMenuItems(QMenu * i_menu)
 {
 	QAction * action;
 
-	action = new QAction("Launch Command ...", this);
+	action = new QAction(tr("Launch Command ..."), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actLaunchCmd()));
 	i_menu->addAction(action);
 
 	if (af::Environment::getRenderLaunchCmds().size())
 	{
-		QMenu * custom_submenu = new QMenu("Launch Command >>>", this);
+		QMenu * custom_submenu = new QMenu(tr("Launch Command >>>"), this);
 		for (
 				std::vector<std::string>::const_iterator it = af::Environment::getRenderLaunchCmds().begin();
 				it != af::Environment::getRenderLaunchCmds().end();
@@ -601,13 +601,13 @@ void ListRenders::generateCommonMenuItems(QMenu * i_menu)
 		i_menu->addMenu(custom_submenu);
 	}
 
-	action = new QAction("Launch And Exit ...", this);
+	action = new QAction(tr("Launch And Exit ..."), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(actLaunchCmdExit()));
 	i_menu->addAction(action);
 
 	if (af::Environment::getRenderLaunchCmdsExit().size())
 	{
-		QMenu * custom_submenu = new QMenu("Launch And Exit >>>", this);
+		QMenu * custom_submenu = new QMenu(tr("Launch And Exit >>>"), this);
 		for (
 				std::vector<std::string>::const_iterator it = af::Environment::getRenderLaunchCmdsExit().begin();
 				it != af::Environment::getRenderLaunchCmdsExit().end();
@@ -826,7 +826,7 @@ void ListRenders::actRenderReAssing()
 	std::vector<int> ids(getSelectedIds(type));
 	if (ids.size() == 0)
 	{
-		displayError("No renders selected.");
+		displayError(tr("No renders selected."));
 		return;
 	}
 	std::ostringstream str;
@@ -912,7 +912,7 @@ void ListRenders::editServiceDialog(const QString & i_mode, const QString & i_di
 
 	if (service_mask.isEmpty())
 	{
-		displayError("Empty service name/mask");
+		displayError(tr("Empty service name/mask"));
 		return;
 	}
 
@@ -971,7 +971,7 @@ void ListRenders::ticketEdit_DialogCount(const QString & i_name, bool i_host_tic
 {
 	if (i_name.isEmpty())
 	{
-		displayError("Ticket name is empty.");
+		displayError(tr("Ticket name is empty."));
 		return;
 	}
 
@@ -993,7 +993,7 @@ void ListRenders::ticketEdit_DialogCount(const QString & i_name, bool i_host_tic
 	{
 		if (item->getType() == Item::TRender)
 		{
-			displayError("Render can have only host tickets.");
+			displayError(tr("Render can have only host tickets."));
 			return;
 		}
 
@@ -1048,7 +1048,7 @@ void ListRenders::actCommand( int number)
 
 	if( number >= commands.size())
 	{
-		displayError( "No such command.");
+		displayError( tr("No such command."));
 		return;
 	}
 

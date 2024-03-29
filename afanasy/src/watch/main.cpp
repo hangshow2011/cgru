@@ -8,6 +8,8 @@
 
 #include <QApplication>
 #include <QtGui/QIcon>
+#include <QTranslator>
+#include <QLibraryInfo>
 
 #define AFOUTPUT
 #undef AFOUTPUT
@@ -73,6 +75,10 @@ int main(int argc, char *argv[])
 	#else
 	app.setStyle("plastique");
 	#endif
+	//-------------
+	QTranslator translator;
+	translator.load("zh_cn", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+	app.installTranslator(&translator);
 
 	MonitorHost monitor;
 

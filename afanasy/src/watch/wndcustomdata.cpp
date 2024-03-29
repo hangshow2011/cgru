@@ -26,15 +26,15 @@ WndCustomData::WndCustomData( const QString & i_name, const QString & i_text):
 	QHBoxLayout * qHLayout = new QHBoxLayout();
 	qVLayout->addLayout( qHLayout);
 
-	QPushButton * qBCancel = new QPushButton("Cancel", this);
+	QPushButton * qBCancel = new QPushButton(tr("Cancel"), this);
 	qHLayout->addWidget( qBCancel);
 	connect( qBCancel, SIGNAL( clicked()), this, SLOT( close()));
 
-	QPushButton * qBCheck = new QPushButton("Check", this);
+	QPushButton * qBCheck = new QPushButton(tr("Check"), this);
 	qHLayout->addWidget( qBCheck);
 	connect( qBCheck, SIGNAL( clicked()), this, SLOT( checkText()));
 
-	QPushButton * qBSet = new QPushButton("Set", this);
+	QPushButton * qBSet = new QPushButton(tr("Set"), this);
 	qHLayout->addWidget( qBSet);
 	connect( qBSet, SIGNAL( clicked()), this, SLOT( setText()));
 
@@ -80,7 +80,7 @@ void WndCustomData::setText()
 
 	if( m_text == m_newText )
 	{
-		m_qLine->setText("Text was not changed.");
+		m_qLine->setText(tr("Text was not changed."));
 		return;
 	}
 

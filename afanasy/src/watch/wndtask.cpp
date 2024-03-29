@@ -99,19 +99,19 @@ WndTask::WndTask(const af::MCTaskPos & i_tp, ListTasks * i_parent):
 	layout->addLayout(layoutB);
 	layoutB->setSpacing(4);
 
-	m_btn_skip = new ButtonDblClick("Skip", this);
+	m_btn_skip = new ButtonDblClick(tr("Skip"), this);
 	layoutB->addWidget(m_btn_skip);
 	m_btn_skip->setEnabled(false);
 	connect(m_btn_skip, SIGNAL(sig_dblClicked()), this, SLOT(slot_skip()));
 
-	m_btn_restart = new ButtonDblClick("Restart", this);
+	m_btn_restart = new ButtonDblClick(tr("Restart"), this);
 	layoutB->addWidget(m_btn_restart);
 	m_btn_restart->setEnabled(false);
 	connect(m_btn_restart, SIGNAL(sig_dblClicked()), this, SLOT(slot_restart()));
 
 	layoutB->addStretch();
 
-	m_btn_output = new QPushButton("Output", this);
+	m_btn_output = new QPushButton(tr("Output"), this);
 	layoutB->addWidget(m_btn_output);
 	m_btn_output->setEnabled(false);
 	m_btn_output->setFixedWidth(111);
@@ -124,7 +124,7 @@ WndTask::WndTask(const af::MCTaskPos & i_tp, ListTasks * i_parent):
 	//
 	m_tab_widget = new QTabWidget(this);
 	layout->addWidget(m_tab_widget);
-	QPushButton * refresh = new QPushButton("refresh");
+	QPushButton * refresh = new QPushButton(tr("refresh"));
 	m_tab_widget->setCornerWidget(refresh);
 	connect(refresh, SIGNAL(pressed()), this, SLOT(slot_refresh()));
 
@@ -365,7 +365,7 @@ void WndTask::updateProgress(const af::TaskProgress & i_progress)
 
 void WndTask::slot_outputChanged(int i_index)
 {
-	QString label = "Ouput";
+	QString label = tr("Ouput");
 	if (i_index > 0)
 		label += QString("[#%1]").arg(i_index);
 	else
@@ -497,7 +497,7 @@ void WndTask::showExec(af::MCTask & i_mctask)
 	if (files.size())
 	{
 		c.insertText("\n");
-		c.insertText("Files:", fItalic);
+		c.insertText(tr("Files:"), fItalic);
 		for(int i = 0; i < files.size(); i++)
 			c.insertText("\n" + afqt::stoq(files[i]), fBold);
 	}
@@ -631,7 +631,7 @@ void WndTask::showListen(const af::MCTask & i_mctask)
 
 ButtonMenu::ButtonMenu(const QString & i_file, const QString & i_wdir,
 		const std::map<std::string,std::string> i_env, QWidget * i_parent):
-	QPushButton("Launch", i_parent),
+	QPushButton(tr("Launch"), i_parent),
 	m_file(i_file),
 	m_wdir(i_wdir),
 	m_env(i_env)
@@ -660,7 +660,7 @@ void ButtonMenu::contextMenuEvent(QContextMenuEvent * i_event)
 	QMenu menu(this);
 	ActionId * action;
 
-	action = new ActionId(-1, "Browse", this);
+	action = new ActionId(-1, tr("Browse"), this);
 	connect(action, SIGNAL(triggeredId(int)), this, SLOT(launchCmd(int)));
 	menu.addAction(action);
 

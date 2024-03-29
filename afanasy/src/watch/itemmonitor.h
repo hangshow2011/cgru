@@ -8,6 +8,8 @@ class ListNodes;
 
 class ItemMonitor : public ItemNode
 {
+	Q_DECLARE_TR_FUNCTIONS(ItemMonitor);
+
 public:
 	ItemMonitor(ListNodes * i_list_nodes, af::Monitor * i_monitor, const CtrlSortFilter * i_ctrl_sf);
    ~ItemMonitor();

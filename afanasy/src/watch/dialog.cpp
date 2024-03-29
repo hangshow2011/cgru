@@ -143,7 +143,7 @@ Dialog::Dialog():
     QRect rect;
     if( afqt::QEnvironment::getRect( "Main", rect)) setGeometry( rect);
 
-    displayInfo("Ready.");
+    displayInfo(tr("Ready."));
     m_initialized = true;
 
     reloadImages();
@@ -191,12 +191,12 @@ void Dialog::createMenus()
 {
 	m_contextMenu = new QMenu( this);
 
-	m_levelMenu = new QMenu("UI &Level", this);
+	m_levelMenu = new QMenu(tr("UI &Level"), this);
 	menuBar()->addMenu( m_levelMenu);
 	m_contextMenu->addMenu( m_levelMenu);
 	connect( m_levelMenu, SIGNAL( aboutToShow()), this, SLOT( showMenuLevel()));
 
-	m_themeMenu = new QMenu("Color &Theme", this);
+	m_themeMenu = new QMenu(tr("Color &Theme"), this);
 	menuBar()->addMenu( m_themeMenu);
 	m_contextMenu->addMenu( m_themeMenu);
 	connect( m_themeMenu, SIGNAL( aboutToShow()), this, SLOT( showMenuTheme()));
@@ -204,35 +204,35 @@ void Dialog::createMenus()
 	m_contextMenu->addSeparator();
 
     QAction *action;
-	QMenu * editMenu = menuBar()->addMenu("&Edit");
-    action = new QAction( "Customize GUI...", editMenu);
+	QMenu * editMenu = menuBar()->addMenu(tr("&Edit"));
+    action = new QAction( tr("Customize GUI..."), editMenu);
     connect( action, SIGNAL( triggered() ), this, SLOT( actColors() ));
     editMenu->addAction( action);
 	m_contextMenu->addAction( action);
-    action = new QAction( "Notifications...", editMenu);
+    action = new QAction( tr("Notifications..."), editMenu);
     connect( action, SIGNAL( triggered() ), this, SLOT( actNotifications() ));
     editMenu->addAction( action);
 	m_contextMenu->addAction( action);
     editMenu->addSeparator();
 
-	m_prefsMenu = new QMenu("&Preferences", this);
+	m_prefsMenu = new QMenu(tr("&Preferences"), this);
 	menuBar()->addMenu( m_prefsMenu);
 	m_contextMenu->addMenu( m_prefsMenu);
 	connect( m_prefsMenu, SIGNAL( aboutToShow()), this, SLOT( showMenuPrefs()));
 
 	m_contextMenu->addSeparator();
 
-    action = new QAction( "Save Preferences", editMenu);
+    action = new QAction( tr("Save Preferences"), editMenu);
     connect( action, SIGNAL( triggered() ), this, SLOT( actSavePreferences() ));
     editMenu->addAction( action);
 	m_contextMenu->addAction( action);
 
-	m_adminMenu = new QMenu("&Administrate", this);
+	m_adminMenu = new QMenu(tr("&Administrate"), this);
 	menuBar()->addMenu(m_adminMenu);
 	m_contextMenu->addMenu(m_adminMenu);
 	connect(m_adminMenu, SIGNAL(aboutToShow()), this, SLOT(showMenuAdmin()));
 
-	m_helpMenu = new QMenu("&Help", this);
+	m_helpMenu = new QMenu(tr("&Help"), this);
 	menuBar()->addMenu( m_helpMenu);
 	m_contextMenu->addMenu( m_helpMenu);
 	connect( m_helpMenu, SIGNAL( aboutToShow()), this, SLOT( showMenuHelp()));
@@ -242,7 +242,7 @@ void Dialog::showMenuLevel()
 {
 	m_levelMenu->clear();
 
-	const char *jedi_names[] = {"Padawan","Jedi","Sith"};
+	const QString jedi_names[] = {tr("Padawan"),tr("Jedi"),tr("Sith")};
     for( int i = 0; i < AFGUI::SITH+1; i++)
     {
         ActionId * action_id = new ActionId( i, jedi_names[i], m_levelMenu);
@@ -274,7 +274,7 @@ void Dialog::showMenuPrefs()
 	m_prefsMenu->clear();
 	QAction * action;
 
-	QMenu * scroll_step_menu = new QMenu("Set Scroll Step");
+	QMenu * scroll_step_menu = new QMenu(tr("Set Scroll Step"));
 	m_prefsMenu->addMenu(scroll_step_menu);
 
 	for (int i = 0; i < ms_scroll_steps.size(); i++)
@@ -296,7 +296,7 @@ void Dialog::showMenuPrefs()
 
 	m_prefsMenu->addSeparator();
 
-    action = new QAction( "Save Prefs on Exit", m_prefsMenu);
+    action = new QAction( tr("Save Prefs on Exit"), m_prefsMenu);
     action->setCheckable( true);
     action->setChecked( afqt::QEnvironment::savePrefsOnExit.n != 0);
     connect( action, SIGNAL( triggered() ), this, SLOT( actSavePreferencesOnExit() ));
@@ -304,37 +304,37 @@ void Dialog::showMenuPrefs()
 
 	m_prefsMenu->addSeparator();
 
-    action = new QAction( "Save GUI", m_prefsMenu);
+    action = new QAction( tr("Save GUI"), m_prefsMenu);
     action->setCheckable( true);
     action->setChecked( afqt::QEnvironment::saveGUIOnExit.n != 0);
     connect( action, SIGNAL( triggered() ), this, SLOT( actSaveGUIOnExit() ));
     m_prefsMenu->addAction( action);
 
-    action = new QAction( "Save Hotkeys", m_prefsMenu);
+    action = new QAction( tr("Save Hotkeys"), m_prefsMenu);
     action->setCheckable( true);
     action->setChecked( afqt::QEnvironment::saveHotkeysOnExit.n != 0);
     connect( action, SIGNAL( triggered() ), this, SLOT( actSaveHotkeysOnExit() ));
     m_prefsMenu->addAction( action);
 
-    action = new QAction( "Save Windows Geometry", m_prefsMenu);
+    action = new QAction( tr("Save Windows Geometry"), m_prefsMenu);
     action->setCheckable( true);
     action->setChecked( afqt::QEnvironment::saveWndRectsOnExit.n != 0);
     connect( action, SIGNAL( triggered() ), this, SLOT( actSaveWndRectsOnExit() ));
     m_prefsMenu->addAction( action);
 
-	action = new QAction("Reset Windows Geometry", m_prefsMenu);
+	action = new QAction(tr("Reset Windows Geometry"), m_prefsMenu);
 	connect(action, SIGNAL(triggered()), this, SLOT(actResetWndRects()));
 	m_prefsMenu->addAction(action);
 
 	m_prefsMenu->addSeparator();
 
-    action = new QAction("Show Server Name", m_prefsMenu);
+    action = new QAction(tr("Show Server Name"), m_prefsMenu);
     action->setCheckable(true);
     action->setChecked(afqt::QEnvironment::showServerName.n != 0);
     connect(action, SIGNAL(triggered()), this, SLOT(actShowServerName()));
     m_prefsMenu->addAction(action);
 
-    action = new QAction("Show Server Port", m_prefsMenu);
+    action = new QAction(tr("Show Server Port"), m_prefsMenu);
     action->setCheckable(true);
     action->setChecked(afqt::QEnvironment::showServerPort.n != 0);
     connect(action, SIGNAL(triggered()), this, SLOT(actShowServerPort()));
@@ -342,7 +342,7 @@ void Dialog::showMenuPrefs()
 
 	m_prefsMenu->addSeparator();
 
-    action = new QAction( "Show Offline Noise", m_prefsMenu);
+    action = new QAction( tr("Show Offline Noise"), m_prefsMenu);
     action->setCheckable( true);
     action->setChecked( afqt::QEnvironment::showOfflineNoise.n != 0);
     connect( action, SIGNAL( triggered() ), this, SLOT( actShowOfflineNoise() ));
@@ -354,7 +354,7 @@ void Dialog::showMenuAdmin()
 	m_adminMenu->clear();
 	QAction * action;
 
-	action = new QAction("USER Mode");
+	action = new QAction(tr("USER Mode"));
 	action->setCheckable(true);
 	action->setChecked(false == af::Environment::VISOR());
 	action->setEnabled(af::Environment::VISOR());
@@ -363,7 +363,7 @@ void Dialog::showMenuAdmin()
 
 	m_adminMenu->addSeparator();
 
-	action = new QAction("VISOR Mode");
+	action = new QAction(tr("VISOR Mode"));
 	action->setCheckable(true);
 	action->setChecked(af::Environment::VISOR() && (false == af::Environment::GOD()));
 	action->setEnabled((false == af::Environment::VISOR()) || af::Environment::GOD());
@@ -372,7 +372,7 @@ void Dialog::showMenuAdmin()
 
 	m_adminMenu->addSeparator();
 
-	action = new QAction("GOD Mode");
+	action = new QAction(tr("GOD Mode"));
 	action->setCheckable(true);
 	action->setChecked(af::Environment::GOD());
 	action->setEnabled(false == af::Environment::GOD());
@@ -385,11 +385,11 @@ void Dialog::showMenuHelp()
 	m_helpMenu->clear();
 	QAction * action;
 
-    action = new QAction("Documentation...", m_helpMenu);
+    action = new QAction(tr("Documentation..."), m_helpMenu);
     connect( action, SIGNAL( triggered() ), this, SLOT( actShowDocs() ));
     m_helpMenu->addAction( action);
 
-    action = new QAction("Forum...", m_helpMenu);
+    action = new QAction(tr("Forum..."), m_helpMenu);
     connect( action, SIGNAL( triggered() ), this, SLOT( actShowForum() ));
     m_helpMenu->addAction( action);
 }
@@ -438,7 +438,7 @@ void Dialog::connectionEstablished()
         delete m_offlinescreen;
         m_offlinescreen = NULL;
     }
-    displayInfo("Connection established.");
+    displayInfo(tr("Connection established."));
     m_connected = true;
     setDefaultWindowTitle();
 //	m_qafclient.sendMsg( new af::Msg( af::Msg::TUserIdRequest, &m_mcuserhost, true));
@@ -551,11 +551,11 @@ void Dialog::idReceived( int i_id, int i_uid)
 					ButtonMonitor::unset();
 					closeList();
 				}
-				displayWarning("You do not exist.");
+				displayWarning(tr("You do not exist."));
 			}
 			else
 			{
-				displayInfo("You have registered.");
+				displayInfo(tr("You have registered."));
 				AF_LOG << "Registered, ID=" << i_id;
 				if( m_monitorType == Watch::WNONE )
 				{
@@ -600,7 +600,7 @@ bool Dialog::openMonitor( int type, bool open)
 	if(( type == Watch::WJobs) && ( MonitorHost::getUid() < 0 ) && ( af::Environment::VISOR() == false ))
    {
       ButtonMonitor::unset();
-      displayWarning("You are not registered (have no jobs).");
+      displayWarning(tr("You are not registered (have no jobs)."));
 //		m_qafclient.sendMsg( new af::Msg( af::Msg::TUserIdRequest, &m_mcuserhost, true));
       return false;
    }
@@ -623,31 +623,31 @@ bool Dialog::openMonitor( int type, bool open)
 	case Watch::WWork:
 	{
 		newlist = new ListWork(parent);
-		displayInfo("Branches/jobs list.");
+		displayInfo(tr("Branches/jobs list."));
 		break;
 	}
 	case Watch::WJobs:
 	{
 		newlist = new ListJobs(parent);
-		displayInfo("Your jobs list.");
+		displayInfo(tr("Your jobs list."));
 		break;
 	}
 	case Watch::WUsers:
 	{
 		newlist = new ListUsers(parent);
-		displayInfo("Users list.");
+		displayInfo(tr("Users list."));
 		break;
 	}
 	case Watch::WFarm:
 	{
 		newlist = new ListRenders(parent);
-		displayInfo("Farm pools/renders list.");
+		displayInfo(tr("Farm pools/renders list."));
 		break;
 	}
 	case Watch::WMonitors:
 	{
 		newlist = new ListMonitors(parent);
-		displayInfo("Connected monitors.");
+		displayInfo(tr("Connected monitors."));
 		break;
 	}
 	default:
@@ -699,13 +699,13 @@ void Dialog::actSwitchToVisor()
 
 	m_infoline->clear();
 	bool ok = false;
-	QString pass = QInputDialog::getText(this, "Enter Visor Password", QString(), QLineEdit::Password, QString(), &ok);
+	QString pass = QInputDialog::getText(this, tr("Enter Visor Password"), QString(), QLineEdit::Password, QString(), &ok);
 	if (false == ok)
 		return;
 
 	if (false == af::Environment::passwdCheckVisor(afqt::qtos(pass)))
 	{
-		displayError("Invalid password.");
+		displayError(tr("Invalid password."));
 		return;
 	}
 
@@ -720,13 +720,13 @@ void Dialog::actSwitchToGOD()
 
 	m_infoline->clear();
 	bool ok = false;
-	QString pass = QInputDialog::getText(this, "Enter GOD Password", QString(), QLineEdit::Password, QString(), &ok);
+	QString pass = QInputDialog::getText(this, tr("Enter GOD Password"), QString(), QLineEdit::Password, QString(), &ok);
 	if (false == ok)
 		return;
 
 	if (false == af::Environment::passwdCheckGOD(afqt::qtos(pass)))
 	{
-		displayError("Invalid password.");
+		displayError(tr("Invalid password."));
 		return;
 	}
 
@@ -742,7 +742,7 @@ void Dialog::switchToGOD()
 		m_btnMonitor[Watch::WWork]->setHidden(false);
 	m_btnMonitor[Watch::WMonitors]->setHidden(false);
 
-	m_topleft->setText("<b style=color:#0000DD>GOD MODE</b>");
+	m_topleft->setText("<b style=color:#0000DD>"+tr("GOD MODE")+"</b>");
 
 	reopenMonitor();
 }
@@ -750,7 +750,7 @@ void Dialog::switchToVisor()
 {
 	MonitorHost::setUid(0);
 
-	m_topleft->setText("<b style=color:#008800>VISOR MODE</b>");
+	m_topleft->setText("<b style=color:#008800>"+tr("VISOR MODE")+"</b>");
 
 	reopenMonitor();
 }
@@ -779,13 +779,13 @@ void Dialog::reopenMonitor()
 void Dialog::actColors()
 {
     new WndCustomizeGUI();
-    Watch::displayInfo("Opening 'GUI' Window");
+    Watch::displayInfo(tr("Opening 'GUI' Window"));
 }
 
 void Dialog::actNotifications()
 {
     new WndNotifications();
-    Watch::displayInfo("Opening 'Notifications' Window");
+    Watch::displayInfo(tr("Opening 'Notifications' Window"));
 }
 
 void Dialog::actSavePreferencesOnExit(){afqt::QEnvironment::savePrefsOnExit.n    = 1 - afqt::QEnvironment::savePrefsOnExit.n;   }
@@ -815,19 +815,20 @@ void Dialog::actGuiLevel( int i_level)
 	{
 		case AFGUI::PADAWAN:
 			menuBar()->show();
-			message = "Patience you must have. My young Padawan.";
+			message = tr("Patience you must have. My young Padawan.");
 			break;
 		case AFGUI::JEDI:
 			menuBar()->show();
-			message = "May the force be with you.";
+			message = tr("May the force be with you.");
 			break;
 		case AFGUI::SITH:
 			menuBar()->hide();
-			Watch::displayInfo("Welcome to the dark side.");
-			message = "Powerful you have become, the dark side I sense in you.";
+			Watch::displayInfo(tr("Welcome to the dark side."));
+			message = tr("Powerful you have become, the dark side I sense in you.");
 			break;
 		default:
-			Watch::displayError(QString("Invalid theme number: %1").arg( i_level));
+			QString str = tr("Invalid theme number:");
+			Watch::displayError(QString(str +" %1").arg(i_level));
 			return;
 	}
 

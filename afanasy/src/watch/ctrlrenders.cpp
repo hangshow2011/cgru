@@ -10,8 +10,8 @@
 #include "button.h"
 #include "listrenders.h"
 
-const QStringList CtrlRenders::ms_sizes_names = {"VR","S","M","L"};
-const QList<int>  CtrlRenders::ms_sizes_enums = {  0 , 1 , 2 , 3 };
+QStringList CtrlRenders::ms_sizes_names = {"VR","S","M","L"};
+QList<int>  CtrlRenders::ms_sizes_enums = {  0 , 1 , 2 , 3 };
 
 CtrlRenders::CtrlRenders(QWidget * i_parent, ListRenders * i_listrenders):
 	QFrame(i_parent),
@@ -22,8 +22,12 @@ CtrlRenders::CtrlRenders(QWidget * i_parent, ListRenders * i_listrenders):
 
 	QHBoxLayout * layout = new QHBoxLayout(this);
 
-	layout->addWidget(new QLabel("Size:", this));
+	layout->addWidget(new QLabel(tr("Size:"), this));
 
+	ms_sizes_names[0] = tr("VR");
+	ms_sizes_names[1] = tr("S");
+	ms_sizes_names[2] = tr("M");
+	ms_sizes_names[3] = tr("L");
 	for (int i = 0; i < ms_sizes_names.size(); i++)
 	{
 		Button * btn = new Button(ms_sizes_names[i], QString(), QString(), false, true);
@@ -68,7 +72,7 @@ void CtrlRenders::slot_ThumsButtonClicked(Button * i_btn)
 
 
 CtrlRendersViewOptions::CtrlRendersViewOptions(QWidget * i_parent, ListRenders * i_listrenders):
-	QLabel("View Options", i_parent),
+	QLabel(tr("View Options"), i_parent),
 	m_listrenders(i_listrenders)
 {
 	setFrameShape(QFrame::StyledPanel);
@@ -85,31 +89,31 @@ void CtrlRendersViewOptions::contextMenuEvent(QContextMenuEvent *event)
 	ActionId * action_id;
 	QAction * action;
 
-	action = new QAction("Hide:", this);
+	action = new QAction(tr("Hide:"), this);
 	action->setEnabled(false);
 	menu.addAction(action);
 	menu.addSeparator();
 
-	action_id = new ActionId(ListNodes::e_HideInvert, "Invert", this);
+	action_id = new ActionId(ListNodes::e_HideInvert, tr("Invert"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listrenders->getFlagsHideShow() & ListNodes::e_HideInvert);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listrenders, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 	menu.addSeparator();
 
-	action_id = new ActionId(ListNodes::e_HideHidden, "Hidden", this);
+	action_id = new ActionId(ListNodes::e_HideHidden, tr("Hidden"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listrenders->getFlagsHideShow() & ListNodes::e_HideHidden);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listrenders, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 
-	action_id = new ActionId(ListNodes::e_HideOffline, "Offline", this);
+	action_id = new ActionId(ListNodes::e_HideOffline, tr("Offline"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listrenders->getFlagsHideShow() & ListNodes::e_HideOffline);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listrenders, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 
-	action_id = new ActionId(ListNodes::e_HidePools, "Pools", this);
+	action_id = new ActionId(ListNodes::e_HidePools, tr("Pools"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listrenders->getFlagsHideShow() & ListNodes::e_HidePools);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listrenders, SLOT(actHideShow(int)));

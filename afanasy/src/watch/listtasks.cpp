@@ -78,7 +78,7 @@ void ListTasks::construct(af::Job * i_job)
 
 	if (i_job->getBlocksNum() == 0)
 	{
-		displayError("Job with a zero blocks number received.");
+		displayError(tr("Job with a zero blocks number received."));
 		return;
 	}
 
@@ -175,7 +175,7 @@ void ListTasks::generateMenu(QMenu &o_menu, Item * i_item)
 			
 			if (itemBlock->hasFiles())
 			{
-				action = new QAction("Browse Files...", this);
+				action = new QAction(tr("Browse Files..."), this);
 				connect(action, SIGNAL(triggered()), this, SLOT(actBrowseFolder()));
 				o_menu.addAction(action);
 				
@@ -267,7 +267,7 @@ void ListTasks::generateMenu(QMenu &o_menu, Item * i_item)
 
 				o_menu.addSeparator();
 
-				action = new QAction("Browse Files...", this);
+				action = new QAction(tr("Browse Files..."), this);
 				connect(action, SIGNAL(triggered() ), this, SLOT(actBrowseFolder()));
 				o_menu.addAction(action);
 
@@ -375,7 +375,7 @@ bool ListTasks::v_caseMessage(af::Msg * msg)
 		else
 		{
 			AF_ERR << "af::Msg::TJob: Job is already constructed.";
-			displayError("af::Msg::TJob: Job is already constructed.");
+			displayError(tr("af::Msg::TJob: Job is already constructed."));
 		}
 		break;
 	}
@@ -389,7 +389,7 @@ bool ListTasks::v_caseMessage(af::Msg * msg)
 		{
 			if (updateProgress(progress) == false)
 			{
-				displayError("Tasks update error. Closing tasks window.");
+				displayError(tr("Tasks update error. Closing tasks window."));
 				m_parentWindow->close();
 			}
 		}
@@ -506,7 +506,7 @@ bool ListTasks::v_processEvents( const af::MonitorEvents & i_me)
 		if( i_me.m_events[af::Monitor::EVT_jobs_del][i] == m_job_id )
 		{
 			found = true;
-			displayWarning( "The job does not exist any more.");
+			displayWarning( tr("The job does not exist any more."));
 			m_parentWindow->close();
 			break;
 		}
@@ -779,7 +779,7 @@ void ListTasks::actBlockEnvironment()
     QStringList list = str.split('=');
     if( list.size() != 2 )
     {
-        displayError( QString("Invalid name=value pair: ") + str);
+        displayError( QString(tr("Invalid name=value pair: ")) + str);
     }
 	blockAction(QString("\"params\":{\"environment\":{\"%1\":\"%2\"}}").arg(list[0], list[1]));
 }
@@ -863,12 +863,12 @@ void ListTasks::actTaskPreview(int i_num_cmd, int i_num_img)
 	Item* item = getCurrentItem();
 	if (item == NULL)
 	{
-		displayError("No items selected.");
+		displayError(tr("No items selected."));
 		return;
 	}
 	if (item->getType() != Item::TTask)
 	{
-		displayWarning("This action for task only.");
+		displayWarning(tr("This action for task only."));
 		return;
 	}
 
@@ -876,7 +876,7 @@ void ListTasks::actTaskPreview(int i_num_cmd, int i_num_img)
 	std::vector<std::string> images = taskitem->getFiles();
 	if (i_num_img >= images.size())
 	{
-		displayError("No such image number.");
+		displayError(tr("No such image number."));
 		return;
 	}
 
@@ -886,7 +886,7 @@ void ListTasks::actTaskPreview(int i_num_cmd, int i_num_img)
 
 	if (i_num_cmd >= af::Environment::getPreviewCmds().size())
 	{
-		displayError("No such command number.");
+		displayError(tr("No such command number."));
 		return;
 	}
 
@@ -902,12 +902,12 @@ void ListTasks::actBlockPreview( int num_cmd, int num_img)
     Item* item = getCurrentItem();
     if (item == NULL)
     {
-        displayError("No items selected.");
+        displayError(tr("No items selected."));
         return;
     }
     if (item->getType() != Item::TBlock)
     {
-        displayWarning("This action for block only.");
+        displayWarning(tr("This action for block only."));
         return;
     }
 
@@ -915,7 +915,7 @@ void ListTasks::actBlockPreview( int num_cmd, int num_img)
     std::vector<std::string> images = blockitem->getFiles();
     if (num_img >= images.size())
     {
-        displayError("No such image number.");
+        displayError(tr("No such image number."));
         return;
     }
 
@@ -925,7 +925,7 @@ void ListTasks::actBlockPreview( int num_cmd, int num_img)
 
     if (num_cmd >= af::Environment::getPreviewCmds().size())
     {
-        displayError("No such command number.");
+        displayError(tr("No such command number."));
         return;
     }
 

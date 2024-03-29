@@ -52,42 +52,42 @@ ListWork::ListWork(QWidget * i_parent):
 
 	if (af::Environment::VISOR())
 	{
-		addButtonsMenu(Item::TBranch, "Create Childs","Create branch childs or not.");
+		addButtonsMenu(Item::TBranch, tr("Create Childs"),"Create branch childs or not.");
 
-		bp = addButtonPanel(Item::TBranch, "AUTO","branch_childs_create","Automatically create branch childs.");
+		bp = addButtonPanel(Item::TBranch, tr("AUTO"),"branch_childs_create","Automatically create branch childs.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_ACC_Enable()));
-		bp = addButtonPanel(Item::TBranch, "DISABLED","branch_childs_nocreate","Do not create branch childs.");
+		bp = addButtonPanel(Item::TBranch, tr("DISABLED"),"branch_childs_nocreate","Do not create branch childs.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_ACC_Disable()));
 
-		addButtonsMenu(Item::TBranch, "Solve Method","Solve by prority or order.");
+		addButtonsMenu(Item::TBranch, tr("Solve Method"),"Solve by prority or order.");
 
-		bp = addButtonPanel(Item::TBranch, "PRIORITY","branch_solve_priority","Solve by priority.");
+		bp = addButtonPanel(Item::TBranch, tr("PRIORITY"),"branch_solve_priority","Solve by priority.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolvePiority()));
-		bp = addButtonPanel(Item::TBranch, "ORDER","branch_solve_order","Solve by order.");
+		bp = addButtonPanel(Item::TBranch, tr("ORDER"),"branch_solve_order","Solve by order.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolveOrder()));
 
-		addButtonsMenu(Item::TBranch, "Solve Type","Solve users or jobs.");
+		addButtonsMenu(Item::TBranch, tr("Solve Type"),"Solve users or jobs.");
 
-		bp = addButtonPanel(Item::TBranch, "JOBS","branch_solve_jobs","Solve branch jobs.");
+		bp = addButtonPanel(Item::TBranch, tr("JOBS"),"branch_solve_jobs","Solve branch jobs.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolveJobs()));
-		bp = addButtonPanel(Item::TBranch, "USERS","branch_solve_users","Solve branch users.");
+		bp = addButtonPanel(Item::TBranch, tr("USERS"),"branch_solve_users","Solve branch users.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolveUsers()));
 
 		resetButtonsMenu();
 
-		addButtonsMenu(Item::TBranch, "Solve Need","Solve need parameter (by capacity or tasks).");
+		addButtonsMenu(Item::TBranch, tr("Solve Need"),"Solve need parameter (by capacity or tasks).");
 
-		bp = addButtonPanel(Item::TBranch, "TASKS","branch_solve_tasks","Solve by running tasks number.");
+		bp = addButtonPanel(Item::TBranch, tr("TASKS"),"branch_solve_tasks","Solve by running tasks number.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolveTasks()));
-		bp = addButtonPanel(Item::TBranch, "CAPACITY","branch_solve_capacity","Solve by running capacity total.");
+		bp = addButtonPanel(Item::TBranch, tr("CAPACITY"),"branch_solve_capacity","Solve by running capacity total.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_SolveCapacity()));
 
 		resetButtonsMenu();
 
-		bp = addButtonPanel(Item::TJob, "SET BRANCH","job_change_branch","Change job branch.");
+		bp = addButtonPanel(Item::TJob, tr("SET BRANCH"),"job_change_branch","Change job branch.");
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_JobSetBranch()));
 
-		bp = addButtonPanel(Item::TBranch, "DEL DONE JOBS","branch_del_done_jobs","Delete done jobs from branch.","", true);
+		bp = addButtonPanel(Item::TBranch, tr("DEL DONE JOBS"),"branch_del_done_jobs","Delete done jobs from branch.","", true);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(slot_DelDoneJobs()));
 	}
 	else
@@ -125,7 +125,7 @@ void ListWork::contextMenuEvent(QContextMenuEvent *event)
 	QMenu menu(this);
 	QAction *action;
 
-	action = new QAction("Show Log", this);
+	action = new QAction(tr("Show Log"), this);
 	connect(action, SIGNAL(triggered()), this, SLOT(slot_RequestLog()));
 	menu.addAction(action);
 
@@ -298,16 +298,15 @@ void ListWork::calcTitle()
 		if (job->state & AFJOB::STATE_ERROR_MASK  ) jerror   ++;
 	}
 
-	QString branches = QString(
-		"Branches: %1, Empty %2")
-		.arg(btotal).arg(bempty);
+	QString branches = tr("Branches:") + QString(" %1, ").arg(btotal) + tr("Empty")+QString(" %1").arg(bempty);
 
 	QString jobs;
 	if (jblocksrun)
-		jobs = QString("Jobs: %1, Run %2 (%3%), Error %4, Done %5")
-		.arg(jtotal).arg(jrunning).arg(jpercent / jblocksrun).arg(jerror).arg(jdone);
+		jobs = tr("Jobs:")+QString(" %1, ") .arg(jtotal) + tr("Run")
+			   + QString(" %1 (%1%), ").arg(jrunning).arg(jpercent / jblocksrun) + tr("Error")
+			   + QString(" %1, ").arg(jerror) + tr("Done") + QString(" %1").arg(jdone);
 	else
-		jobs = QString("Jobs: %1 Done").arg(jtotal);
+		jobs = tr("Jobs:") + QString(" %1 ").arg(jtotal) + tr("Done");
 
 	this->setWindowTitleWithPrefix(jobs + "; " + branches);
 }
@@ -335,7 +334,7 @@ void ListWork::slot_JobSetBranch()
 
 	bool ok;
 	branch = QInputDialog::getText(this, "Set Job Branch",
-			"Enter job(s) new branch branch",
+			tr("Enter job(s) new branch branch"),
 			QLineEdit::Normal, branch, &ok);
 	if (false == ok)
 		return;
@@ -344,7 +343,7 @@ void ListWork::slot_JobSetBranch()
 
 	setParameterQStr(Item::TJob, "branch", branch);
 
-	displayInfo(QString("Setting branch to %1").arg(branch));
+	displayInfo(tr("Setting branch to")+ QString(" %1").arg(branch));
 }
 
 void ListWork::jobSetBranch(const QString & i_name)

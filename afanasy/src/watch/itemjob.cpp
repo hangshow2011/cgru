@@ -69,9 +69,9 @@ ItemJob::ItemJob(ListNodes * i_list_nodes, bool i_inworklist, af::Job * i_job, c
 	// Add buttons:
 	m_buttons_width = 16;
 
-	m_btn_item_collapse = new ItemButton("item_collapse", 2, 2, 12, "▼", "Collapse item.");
+	m_btn_item_collapse = new ItemButton("item_collapse", 2, 2, 12, "V", "Collapse item.");
 	m_btn_item_collapse->setHidden(m_item_collapsed);
-	m_btn_item_expand   = new ItemButton("item_expand",   2, 2, 12, "▶", "Expand item.");
+	m_btn_item_expand   = new ItemButton("item_expand",   2, 2, 12, ">", "Expand item.");
 	m_btn_item_expand->setHidden(false == m_item_collapsed);
 
 	addButton(m_btn_item_collapse);
@@ -333,17 +333,17 @@ void ItemJob::updateInfo(const af::Job * i_job)
 {
 	m_info_text.clear();
 
-	m_info_text = "Branch: <b>" + branch + "</b>";
-	m_info_text += "<br>Username: <b>" + username + "</b>";
-	m_info_text += "<br>Creation host: <b>" + hostname + "</b>";
-	m_info_text += "<br>Created: <b>" + afqt::time2Qstr(time_creation) + "</b>";
+	m_info_text = tr("Branch:") + " <b>" + branch + "</b>";
+	m_info_text += QString("<br>") + tr("Username:") + " <b>" + username + "</b>";
+	m_info_text += QString("<br>") + tr("Creation host:") + " <b>" + hostname + "</b>";
+	m_info_text += QString("<br>") + tr("Created:") +" <b>" + afqt::time2Qstr(time_creation) + "</b>";
 
 	if (time_started)
-		m_info_text += "<br>Started: <b>" + afqt::time2Qstr(time_started) + "</b>";
+		m_info_text += QString("<br>") + tr("Started:") +" <b>" + afqt::time2Qstr(time_started) + "</b>";
 	if (time_done)
-		m_info_text += "<br>Done: <b>" + afqt::time2Qstr(time_done) + "</b>";
+		m_info_text += QString("<br>") + tr("Done:") +" <b>" + afqt::time2Qstr(time_done) + "</b>";
 	else if (time_wait)
-		m_info_text += "<br>Waiting: <b>" + afqt::time2Qstr(time_wait) + "</b>";
+		m_info_text += QString("<br>") + tr("Waiting:") +" <b>" + afqt::time2Qstr(time_wait) + "</b>";
 
 	ItemNode::updateInfo();
 }
@@ -385,16 +385,16 @@ const QString ItemJob::v_getMultiSelecedText(const QList<Item*> & i_selected) co
 		}
 	}
 
-	info += QString("<br><u><i><b>%1 Jobs Selected</b></i></u>").arg(jobs_count);
+	info += QString("<br><u><i><b>%1 ").arg(jobs_count) + tr("Jobs Selected") + QString("</b></i></u>");
 
 	if (time_started_min)
-		info += "<br>Started First: <b>" + afqt::time2Qstr(time_started_min) + "</b>";
+		info += QString("<br>") + tr("Started First:") + " <b>" + afqt::time2Qstr(time_started_min) + "</b>";
 	if (time_finished_max)
-		info += "<br>Finished Last: <b>" + afqt::time2Qstr(time_finished_max) + "</b>";
+		info += QString("<br>") +tr("Finished Last:") +" <b>" + afqt::time2Qstr(time_finished_max) + "</b>";
 	if (time_run_count > 1)
 	{
-		info += "<br>Time Run Avg: <b>" + afqt::stoq(af::time2strHMS(time_run_sum / time_run_count)) + "</b>";
-		info += "<br>Time Run Sum: <b>" + afqt::stoq(af::time2strHMS(time_run_sum)) + "</b>";
+		info += QString("<br>") +tr("Time Run Avg:") +" <b>" + afqt::stoq(af::time2strHMS(time_run_sum / time_run_count)) + "</b>";
+		info += QString("<br>") +tr("Time Run Sum:") +" <b>" + afqt::stoq(af::time2strHMS(time_run_sum)) + "</b>";
 	}
 
 	return info;

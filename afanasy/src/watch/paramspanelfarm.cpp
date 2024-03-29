@@ -40,8 +40,8 @@ ParamsPanelFarm::ParamsPanelFarm(ListRenders * i_list_renders):
 
 	QHBoxLayout * services_caption_layout = new QHBoxLayout();
 	m_services_layout->addLayout(services_caption_layout);
-	services_caption_layout->addWidget(new QLabel("<b>Services</b>"));
-	m_btn_service_add = new QPushButton("add");
+	services_caption_layout->addWidget(new QLabel("<b>"+tr("Services")+"</b>"));
+	m_btn_service_add = new QPushButton(tr("add"));
 	services_caption_layout->addWidget(m_btn_service_add);
 	m_btn_service_add->setFixedSize(36, 16);
 	connect(m_btn_service_add, SIGNAL(clicked()), m_list_renders, SLOT(slot_ServiceAdd()));
@@ -58,8 +58,8 @@ ParamsPanelFarm::ParamsPanelFarm(ListRenders * i_list_renders):
 
 	QHBoxLayout * disservs_caption_layout = new QHBoxLayout();
 	m_disservs_layout->addLayout(disservs_caption_layout);
-	disservs_caption_layout->addWidget(new QLabel("<b>Disabled Services</b>"));
-	m_btn_disserv_add = new QPushButton("add");
+	disservs_caption_layout->addWidget(new QLabel("<b>"+tr("Disabled Services")+"</b>"));
+	m_btn_disserv_add = new QPushButton(tr("add"));
 	disservs_caption_layout->addWidget(m_btn_disserv_add);
 	m_btn_disserv_add->setFixedSize(36, 16);
 	connect(m_btn_disserv_add, SIGNAL(clicked()), m_list_renders, SLOT(slot_ServiceDisable()));
@@ -75,7 +75,7 @@ ParamsPanelFarm::ParamsPanelFarm(ListRenders * i_list_renders):
 	QVBoxLayout * tickets_frame_layout = new QVBoxLayout(tickets_frame);
 	tickets_frame_layout->setSpacing(10);
 
-	m_tickets_label = new QLabel("<b>Tickets</b>");
+	m_tickets_label = new QLabel("<b>"+tr("Tickets")+"</b>");
 	tickets_frame_layout->addWidget(m_tickets_label);
 
 	// Tickets pool
@@ -88,9 +88,9 @@ ParamsPanelFarm::ParamsPanelFarm(ListRenders * i_list_renders):
 	m_tickets_pool_layout->setSpacing(0);
 	QHBoxLayout * tickets_pool_caption = new QHBoxLayout();
 	m_tickets_pool_layout->addLayout(tickets_pool_caption);
-	tickets_pool_caption->addWidget(new QLabel("<b>Tickets Pool</b>"));
+	tickets_pool_caption->addWidget(new QLabel("<b>"+tr("Tickets Pool")+"</b>"));
 
-	m_btn_ticket_pool_add = new QPushButton("add");
+	m_btn_ticket_pool_add = new QPushButton(tr("add"));
 	tickets_pool_caption->addWidget(m_btn_ticket_pool_add);
 	m_btn_ticket_pool_add->setFixedSize(36, 16);
 	connect(m_btn_ticket_pool_add, SIGNAL(clicked()), m_list_renders, SLOT(slot_TicketPoolEdit()));
@@ -106,9 +106,9 @@ ParamsPanelFarm::ParamsPanelFarm(ListRenders * i_list_renders):
 	m_tickets_host_layout->setSpacing(0);
 	QHBoxLayout * tickets_host_caption = new QHBoxLayout();
 	m_tickets_host_layout->addLayout(tickets_host_caption);
-	tickets_host_caption->addWidget(new QLabel("<b>Tickets Host</b>"));
+	tickets_host_caption->addWidget(new QLabel("<b>"+tr("Tickets Host")+"</b>"));
 
-	m_btn_ticket_host_add = new QPushButton("add");
+	m_btn_ticket_host_add = new QPushButton(tr("add"));
 	tickets_host_caption->addWidget(m_btn_ticket_host_add);
 	m_btn_ticket_host_add->setFixedSize(36, 16);
 	connect(m_btn_ticket_host_add, SIGNAL(clicked()), m_list_renders, SLOT(slot_TicketHostEdit()));
@@ -345,20 +345,20 @@ ServiceWidget::ServiceWidget(const QString & i_name, bool i_disabled_service, bo
 	{
 		m_label->setText(QString("<i><b><font color=\"#A00\">%1<font></b></i>").arg(m_name));
 
-		QPushButton * btn = new QPushButton("enable");
+		QPushButton * btn = new QPushButton(tr("enable"));
 		btn->setFixedSize(64, 16);
 		layout->addWidget(btn);
 		connect(btn, SIGNAL(clicked()), this, SLOT(slot_Enable()));
 	}
 	else
 	{
-		m_btn_disable = new QPushButton("dis");
+		m_btn_disable = new QPushButton(tr("dis"));
 		m_btn_disable->setFixedSize(32, 16);
 		layout->addWidget(m_btn_disable);
 		connect(m_btn_disable, SIGNAL(clicked()), this, SLOT(slot_Disable()));
 		setEnanbled(i_enabled);
 
-		QPushButton * btn = new QPushButton("rm");
+		QPushButton * btn = new QPushButton(tr("rm"));
 		btn->setFixedSize(32, 16);
 		layout->addWidget(btn);
 		connect(btn, SIGNAL(clicked()), this, SLOT(slot_Remove()));
@@ -430,10 +430,10 @@ bool ServiceWidget::confirm(const QString & i_action) const
 	if (pixmap)
 		mb.setIconPixmap(*pixmap);
 
-	mb.setWindowTitle("Edit Services");
-	mb.setText(QString("%1 service \"%2\"?").arg(i_action, m_name));
-	mb.addButton("No", QMessageBox::RejectRole);
-	mb.addButton("Yes", QMessageBox::AcceptRole);
+	mb.setWindowTitle(tr("Edit Services"));
+	mb.setText(QString("%1 ").arg(i_action) + tr("service")+ QString(" \"%1\"?").arg(m_name));
+	mb.addButton(tr("No"), QMessageBox::RejectRole);
+	mb.addButton(tr("Yes"), QMessageBox::AcceptRole);
 
 	return mb.exec();
 }

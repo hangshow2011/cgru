@@ -20,8 +20,8 @@ private slots:
 
 private:
 	QList<Button*> m_thumbs_btns;
-	static const QStringList ms_sizes_names;
-	static const QList<int>  ms_sizes_enums;
+	static QStringList ms_sizes_names;
+	static QList<int>  ms_sizes_enums;
 
 	ListRenders * m_listrenders;
 };

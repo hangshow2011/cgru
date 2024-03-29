@@ -79,7 +79,7 @@ ParamsPanel::ParamsPanel():
 	QHBoxLayout * params_caption_layout = new QHBoxLayout();
 	m_params_layout->addLayout(params_caption_layout);
 	// Label
-	m_params_label = new QLabel("<b>Parameters</b>");
+	m_params_label = new QLabel("<b>" + tr("Parameters") + "</b>");
 	params_caption_layout->addWidget(m_params_label);
 	params_caption_layout->addStretch();
 	// "Show" button
@@ -98,7 +98,7 @@ ParamsPanel::ParamsPanel():
 
 	m_info_layout = new QVBoxLayout(m_info_frame);
 	m_info_layout->setAlignment(Qt::AlignTop);
-	m_info_label = new QLabel("<b>Info</b>");
+	m_info_label = new QLabel("<b>"+tr("Info")+"</b>");
 	m_info_layout->addWidget(m_info_label);
 	m_info_layout->addWidget(m_info_label);
 	m_info_text = new QLabel();

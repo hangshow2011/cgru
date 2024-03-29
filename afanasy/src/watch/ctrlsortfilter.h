@@ -72,8 +72,8 @@ public:
 		TLAST
 	};
 
-	static const char * TNAMES[];
-	static const char * TNAMES_SHORT[];
+	static QString TNAMES[];
+	static QString TNAMES_SHORT[];
 
 signals:
 	void sortTypeChanged();

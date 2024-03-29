@@ -34,7 +34,7 @@ FileWidget::FileWidget( QWidget * i_parent, afqt::Attr * i_attr,
     connect( m_lineedit, SIGNAL( editingFinished()), this, SLOT( editingFinished()));
     layout->addWidget( m_lineedit);
 
-    QPushButton * button = new QPushButton( "Browse", this);
+    QPushButton * button = new QPushButton( tr("Browse"), this);
     connect( button, SIGNAL( pressed()), this, SLOT( browse()));
     policy.setHorizontalPolicy( QSizePolicy::Maximum);
     button->setSizePolicy( policy);

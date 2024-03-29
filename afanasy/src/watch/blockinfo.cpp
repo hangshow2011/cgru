@@ -55,35 +55,35 @@ BlockInfo::BlockInfo(const af::BlockData * i_data, Item * i_item, ListItems * i_
 
 	tasksnum(1)
 {
-	addParam_Num("sequential",                   "Sequential",            "Tasks solving order", -(1<<30));
-	addParam_Num("capacity",                     "Capacity",              "Tasks capacity");
-	addParam_Num("max_running_tasks",            "Maximum Running",       "Maximum running tasks number");
-	addParam_Num("max_running_tasks_per_host",   "Max Run Per Host",      "Max run tasks on the same host");
+	addParam_Num("sequential",                   tr("Sequential"),            "Tasks solving order", -(1<<30));
+	addParam_Num("capacity",                     tr("Capacity"),              "Tasks capacity");
+	addParam_Num("max_running_tasks",            tr("Maximum Running"),       "Maximum running tasks number");
+	addParam_Num("max_running_tasks_per_host",   tr("Max Run Per Host"),      "Max run tasks on the same host");
 	addParam_separator();
-	addParam_Hrs("task_max_run_time",            "Task Max Run Time",     "Task maximum running time");
-	addParam_Hrs("task_min_run_time",            "Task Min Run Time",     "Task minimum running time");
-	addParam_Hrs("task_progress_change_timeout", "Task Progress Timeout", "Task progress change timeout");
+	addParam_Hrs("task_max_run_time",            tr("Task Max Run Time"),     "Task maximum running time");
+	addParam_Hrs("task_min_run_time",            tr("Task Min Run Time"),     "Task minimum running time");
+	addParam_Hrs("task_progress_change_timeout", tr("Task Progress Timeout"), "Task progress change timeout");
 	addParam_separator();
-	addParam_Num("errors_retries",               "Errors Retries",        "Number of times to retry error tasks");
-	addParam_Num("errors_avoid_host",            "Errors Avoid Host",     "Number of errors for block to avoid host");
-	addParam_Num("errors_task_same_host",        "Errors Task Avoid",     "Number of errors for each task to avoid host");
-	addParam_Hrs("errors_forgive_time",          "Errors Forgive Time",   "After this time host errors will be forgived");
+	addParam_Num("errors_retries",               tr("Errors Retries"),        "Number of times to retry error tasks");
+	addParam_Num("errors_avoid_host",            tr("Errors Avoid Host"),     "Number of errors for block to avoid host");
+	addParam_Num("errors_task_same_host",        tr("Errors Task Avoid"),     "Number of errors for each task to avoid host");
+	addParam_Hrs("errors_forgive_time",          tr("Errors Forgive Time"),   "After this time host errors will be forgived");
 	addParam_separator();
-	addParam_REx("hosts_mask",                   "Hosts Mask",            "Host names pattern that block can run on");
-	addParam_REx("hosts_mask_exclude",           "Hosts Mask Exclude",    "Host names pattern that block will not run");
-	addParam_MiB("need_memory",                  "Need Memory",           "Host free memory needed to run tasks (GB)");
-	addParam_MiB("need_gpu_mem_mb",              "Need GPU Memory",       "Host free GPU memory needed to run tasks (GB)");
-	addParam_Meg("need_cpu_freq_mgz",            "Need CPU Frequency",    "Host CPU freqency to run tasks (GHz)");
-	addParam_Num("need_cpu_cores",               "Need CPU Cores",        "Host CPU cores number to run tasks");
-	addParam_Meg("need_cpu_freq_cores",          "Need CPU Cores*Freq",   "Host CPU cores*freqency to run tasks (GHz)");
-	addParam_GiB("need_hdd",                     "Need HDD Space",        "Host free HDD space needed to run tasks (GB)");
-	addParam_REx("need_properties",              "Need Properties",       "Host \"Properties\" needed to run tasks");
-	addParam_Num("need_power",                   "Need Power",            "Host \"Power\" needed to run tasks");
+	addParam_REx("hosts_mask",                   tr("Hosts Mask"),            "Host names pattern that block can run on");
+	addParam_REx("hosts_mask_exclude",           tr("Hosts Mask Exclude"),    "Host names pattern that block will not run");
+	addParam_MiB("need_memory",                  tr("Need Memory"),           "Host free memory needed to run tasks (GB)");
+	addParam_MiB("need_gpu_mem_mb",              tr("Need GPU Memory"),       "Host free GPU memory needed to run tasks (GB)");
+	addParam_Meg("need_cpu_freq_mgz",            tr("Need CPU Frequency"),    "Host CPU freqency to run tasks (GHz)");
+	addParam_Num("need_cpu_cores",               tr("Need CPU Cores"),        "Host CPU cores number to run tasks");
+	addParam_Meg("need_cpu_freq_cores",          tr("Need CPU Cores*Freq"),   "Host CPU cores*freqency to run tasks (GHz)");
+	addParam_GiB("need_hdd",                     tr("Need HDD Space"),        "Host free HDD space needed to run tasks (GB)");
+	addParam_REx("need_properties",              tr("Need Properties"),       "Host \"Properties\" needed to run tasks");
+	addParam_Num("need_power",                   tr("Need Power"),            "Host \"Power\" needed to run tasks");
 	addParam_separator();
-	addParam_REx("depend_mask",                  "Depend Mask",           "Blocks name mask to wait to finish totally");
-	addParam_REx("tasks_depend_mask",            "Tasks Depend Mask",     "Blocks name mask to wait to finish tasks");
+	addParam_REx("depend_mask",                  tr("Depend Mask"),           "Blocks name mask to wait to finish totally");
+	addParam_REx("tasks_depend_mask",            tr("Tasks Depend Mask"),     "Blocks name mask to wait to finish tasks");
 	addParam_separator();
-	addParam_MSS("environment",                  "Tasks Environment",     "Blocks tasks process extra environment variables");
+	addParam_MSS("environment",                  tr("Tasks Environment"),     "Blocks tasks process extra environment variables");
 }
 
 BlockInfo::~BlockInfo()
@@ -410,7 +410,7 @@ void BlockInfo::refresh()
 				str_right_top += "Check";
 		}
 
-		str_right_top += " Capacity:";
+		str_right_top += tr(" Capacity:");
 		if( varcapacity   ) str_right_top += QString("(%1-%2)*").arg( capcoeff_min).arg( capcoeff_max);
 		str_right_top += QString("%1").arg( capacity);
 		
@@ -538,22 +538,22 @@ void BlockInfo::refresh()
 	str_left_bottom = QString::number( p_percentage) + "%";
 	if( Watch::isPadawan())
 	{
-		if (p_tasks_running ) str_left_bottom += QString(" Running:%1"         ).arg(p_tasks_running);
-		if (p_capacity_total) str_left_bottom += QString(" Capacity:%1"        ).arg(af::toKMG(p_capacity_total).c_str());
-		if (p_tasks_done    ) str_left_bottom += QString(" Done:%1"            ).arg(p_tasks_done);
-		if (p_tasks_error   ) str_left_bottom += QString(" Errors:%1"          ).arg(p_tasks_error);
-		if (p_tasks_skipped ) str_left_bottom += QString(" Skipped:%1"         ).arg(p_tasks_skipped);
-		if (p_tasks_waitdep ) str_left_bottom += QString(" WaitDepends:%1"     ).arg(p_tasks_waitdep);
-		if (p_tasks_warning ) str_left_bottom += QString(" Warnings:%1"        ).arg(p_tasks_warning);
-		if (p_tasks_waitrec ) str_left_bottom += QString(" WaitingReconnect:%1").arg(p_tasks_waitrec);
+		if (p_tasks_running) str_left_bottom += tr(" Running:") + QString("%1").arg(p_tasks_running);
+		if (p_capacity_total) str_left_bottom += tr(" Capacity:") +QString("%1"        ).arg(af::toKMG(p_capacity_total).c_str());
+		if (p_tasks_done) str_left_bottom += tr(" Done:") + QString("%1").arg(p_tasks_done);
+		if (p_tasks_error) str_left_bottom += tr(" Errors:") + QString("%1").arg(p_tasks_error);
+		if (p_tasks_skipped) str_left_bottom += tr(" Skipped:") + QString("%1").arg(p_tasks_skipped);
+		if (p_tasks_waitdep ) str_left_bottom += tr(" WaitDepends:") +QString("%1"     ).arg(p_tasks_waitdep);
+		if (p_tasks_warning ) str_left_bottom += tr(" Warnings:") +QString("%1"        ).arg(p_tasks_warning);
+		if (p_tasks_waitrec ) str_left_bottom += tr(" WaitingReconnect:") +QString("%1").arg(p_tasks_waitrec);
 	}
 	else if( Watch::isJedi())
 	{
-		if (p_tasks_running ) str_left_bottom += QString(" Run:%1" ).arg(p_tasks_running);
-		if (p_capacity_total) str_left_bottom += QString(" Cap:%1" ).arg(af::toKMG(p_capacity_total).c_str());
-		if (p_tasks_done    ) str_left_bottom += QString(" Done:%1").arg(p_tasks_done);
-		if (p_tasks_error   ) str_left_bottom += QString(" Err:%1" ).arg(p_tasks_error);
-		if (p_tasks_skipped ) str_left_bottom += QString(" Skp:%1" ).arg(p_tasks_skipped);
+		if (p_tasks_running ) str_left_bottom += tr(" Run:") +QString("%1" ).arg(p_tasks_running);
+		if (p_capacity_total) str_left_bottom += tr(" Cap:") +QString("%1" ).arg(af::toKMG(p_capacity_total).c_str());
+		if (p_tasks_done) str_left_bottom += tr(" Done:") + QString("%1").arg(p_tasks_done);
+		if (p_tasks_error) str_left_bottom += tr(" Err:") + QString("%1").arg(p_tasks_error);
+		if (p_tasks_skipped) str_left_bottom += tr(" Skp:") + QString("%1").arg(p_tasks_skipped);
 		if (p_tasks_waitdep ) str_left_bottom += QString(" WDP:%1" ).arg(p_tasks_waitdep);
 		if (p_tasks_warning ) str_left_bottom += QString(" Wrn:%1" ).arg(p_tasks_warning);
 		if (p_tasks_waitrec ) str_left_bottom += QString(" WRC:%1" ).arg(p_tasks_waitrec);
@@ -572,20 +572,20 @@ void BlockInfo::refresh()
 
 	if (server_info.size()) str_left_bottom += QString(" %1").arg(server_info);
 
-	if (m_jobid == AFJOB::SYSJOB_ID ) str_left_bottom += QString(" Ready:%1").arg( p_tasks_ready);
+	if (m_jobid == AFJOB::SYSJOB_ID) str_left_bottom += tr(" Ready:") + QString("%1").arg(p_tasks_ready);
 
 
 	// Right bottom: server info, errors&avoids
 	str_right_bottom.clear();
 	if(Watch::isPadawan())
 	{
-		if(p_error_hosts) str_right_bottom += QString(" Error Hosts:%1").arg(p_error_hosts);
-		if(p_avoid_hosts) str_right_bottom += QString("/%1:Avoiding").arg(p_avoid_hosts);
+		if (p_error_hosts) str_right_bottom += tr(" Error Hosts:") + QString("%1").arg(p_error_hosts);
+		if (p_avoid_hosts) str_right_bottom += QString("/%1:").arg(p_avoid_hosts) + tr("Avoiding");
 	}
 	else if(Watch::isJedi())
 	{
-		if(p_error_hosts) str_right_bottom += QString(" ErrHosts:%1").arg(p_error_hosts);
-		if(p_avoid_hosts) str_right_bottom += QString("/%1:Avoid").arg(p_avoid_hosts);
+		if(p_error_hosts) str_right_bottom += tr(" ErrHosts:") +QString("%1").arg(p_error_hosts);
+		if (p_avoid_hosts) str_right_bottom += QString("/%1:").arg(p_avoid_hosts) + tr("Avoid");
 	}
 	else
 	{
@@ -878,7 +878,7 @@ void BlockInfo::slot_BlockChangeParam(const Param * i_param)
 void BlockInfo::slot_BlockTicketAdd()
 {
 	bool ok;
-	QString name = QInputDialog::getText(m_listitems, "Add Ticket", "Enter a new ticket name", QLineEdit::Normal, "", &ok);
+	QString name = QInputDialog::getText(m_listitems, "Add Ticket", tr("Enter a new ticket name"), QLineEdit::Normal, "", &ok);
 	if (false == ok)
 		return;
 
@@ -890,7 +890,7 @@ void BlockInfo::slot_BlockTicketEdit(QString i_name)
 	if (i_name.isEmpty())
 	{
 		// If name is not provided, new ticket name should be asked
-		m_listitems->displayError("Empty ticket name.");
+		m_listitems->displayError(tr("Empty ticket name."));
 		return;
 	}
 

@@ -11,7 +11,7 @@
 #include "actionid.h"
 #include "ctrlsortfiltermenu.h"
 
-const char * CtrlSortFilter::TNAMES[] = {
+QString CtrlSortFilter::TNAMES[] = {
 "Disabled",
 "Priority",
 "Capacity",
@@ -36,7 +36,7 @@ const char * CtrlSortFilter::TNAMES[] = {
 "[LAST]"
 };
 
-const char * CtrlSortFilter::TNAMES_SHORT[] = {
+QString CtrlSortFilter::TNAMES_SHORT[] = {
 "none",
 "Priority",
 "Capacity",
@@ -76,9 +76,28 @@ CtrlSortFilter::CtrlSortFilter( ListItems * i_parent,
 	m_filtermatch(    i_filtermatch    ),
 	m_parernlist(     i_parent         )
 {
+	//-------------
+	QString TNAMES0[] = {tr("Disabled"), tr("Priority"), tr("Capacity"), tr("Name"), tr("User Name"),
+		tr("Task User"), tr("Host Name"), tr("Jobs Count"), tr("Running Tasks"), tr("Service Name"),
+		tr("Time Created"), tr("Time Launched"), tr("Time Started"), tr("Time Registered"),
+		tr("Time Activity"), tr("Time Finished"), tr("Time Running"), tr("Engine"), tr("HwInfo"),
+		tr("Address"), tr("Elder Task Runtime"), tr("[LAST]")};
+	for (int i = 0; i < sizeof(TNAMES0) / sizeof(char *); i++)
+	{
+		TNAMES[i] = TNAMES0[i].toStdString().c_str();
+	}
+	QString TNAMES_SHORT0[] = {tr("none"), tr("Priority"), tr("Capacity"), tr("Name"), tr("User"),
+		tr("TaskUser"), tr("Host"), tr("Jobs"), tr("Tasks"), tr("Service"), tr("Created"), tr("Launched"),
+		tr("Started"), tr("Registered"), tr("Activity"), tr("Finished"), tr("Running"), tr("Engine"),
+		tr("HwInfo"), tr("Address"), tr("Task Runtime"), tr("[LAST]")};
+	for (int i = 0; i < sizeof(TNAMES_SHORT0) / sizeof(char *); i++)
+	{
+		TNAMES_SHORT[i] = TNAMES_SHORT0[i].toStdString().c_str();
+	}
+	//---------------------------
 	setToolTip("Sort&filter control.\nUse RMB menu for options.");
 
-	m_sort_label = new QLabel("Sort:", this);
+	m_sort_label = new QLabel(tr("Sort:"), this);
 	m_sort_menu1 = new CtrlSortFilterMenu( this, m_sorttype1);
 	m_sort_menu2 = new CtrlSortFilterMenu( this, m_sorttype2);
 	connect( m_sort_menu1, SIGNAL( sig_changed( int)), this, SLOT( actSortType1( int)));
@@ -88,7 +107,7 @@ CtrlSortFilter::CtrlSortFilter( ListItems * i_parent,
 	m_sort_menu1->setToolTip("RMB to select 1st sort field.\nDouble click to change direction.");
 	m_sort_menu2->setToolTip("RMB to select 2nd sort field.\nDouble click to change direction.");
 
-	m_filter_label = new QLabel("Filter:", this);
+	m_filter_label = new QLabel(tr("Filter:"), this);
 	m_filter_menu = new CtrlSortFilterMenu( this, m_filtertype);
 	connect( m_filter_menu, SIGNAL( sig_changed( int)), this, SLOT( actFilterType( int)));
 	m_filter_menu->setToolTip("RMB to select filtering field.");
@@ -142,13 +161,13 @@ void CtrlSortFilter::contextMenuEvent(QContextMenuEvent *i_event)
 	QAction *action;
 
 
-	action = new QAction( "Sort1 Ascending", this);
+	action = new QAction( tr("Sort1 Ascending"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_sortascending1);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSortAscending1() ));
 	menu.addAction( action);
 
-	action = new QAction( "Sort1 Descending", this);
+	action = new QAction( tr("Sort1 Descending"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_sortascending1 == false);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSortAscending1() ));
@@ -158,13 +177,13 @@ void CtrlSortFilter::contextMenuEvent(QContextMenuEvent *i_event)
 	menu.addSeparator();
 
 
-	action = new QAction( "Sort2 Ascending", this);
+	action = new QAction( tr("Sort2 Ascending"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_sortascending2);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSortAscending2() ));
 	menu.addAction( action);
 
-	action = new QAction( "Sort2 Descending", this);
+	action = new QAction( tr("Sort2 Descending"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_sortascending2 == false);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actSortAscending2() ));
@@ -174,25 +193,25 @@ void CtrlSortFilter::contextMenuEvent(QContextMenuEvent *i_event)
 	menu.addSeparator();
 
 
-	action = new QAction( "Filter Include", this);
+	action = new QAction( tr("Filter Include"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_filterinclude);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actFilterInclude() ));
 	menu.addAction( action);
 
-	action = new QAction( "Filter Exclude", this);
+	action = new QAction( tr("Filter Exclude"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_filterinclude == false);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actFilterInclude() ));
 	menu.addAction( action);
 
-	action = new QAction( "Filter Match", this);
+	action = new QAction( tr("Filter Match"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_filtermatch);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actFilterMatch() ));
 	menu.addAction( action);
 
-	action = new QAction( "Filter Contain", this);
+	action = new QAction( tr("Filter Contain"), this);
 	action->setCheckable( true);
 	action->setChecked( *m_filtermatch == false);
 	connect( action, SIGNAL( triggered() ), this, SLOT( actFilterMatch() ));
@@ -291,7 +310,7 @@ void CtrlSortFilter::actFilter( const QString & i_str)
 
 	*m_filter = str;
 	selLabel();
-	m_parernlist->displayInfo("Filter pattern changed.");
+	m_parernlist->displayInfo(tr("Filter pattern changed."));
 	emit filterChanged();
 }
 

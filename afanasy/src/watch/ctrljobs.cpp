@@ -15,8 +15,8 @@
 #include "../include/macrooutput.h"
 #include "../libafanasy/logger.h"
 
-const QStringList CtrlJobs::ms_thumbs_names = {"S","M","L","XL"};
-const QList<int>  CtrlJobs::ms_thumbs_sizes = { 25, 50,100, 200};
+QStringList CtrlJobs::ms_thumbs_names = {"S","M","L","XL"};
+QList<int>  CtrlJobs::ms_thumbs_sizes = { 25, 50,100, 200};
 
 CtrlJobs::CtrlJobs(QWidget * i_parent, ListJobs * i_listjobs, bool i_inworklist):
 	QFrame(i_parent),
@@ -28,8 +28,12 @@ CtrlJobs::CtrlJobs(QWidget * i_parent, ListJobs * i_listjobs, bool i_inworklist)
 
 	QHBoxLayout * layout = new QHBoxLayout(this);
 
-	layout->addWidget(new QLabel("Thumbs:", this));
+	layout->addWidget(new QLabel(tr("Thumbs:"), this));
 
+	ms_thumbs_names[0] = tr("S");
+	ms_thumbs_names[1] = tr("M");
+	ms_thumbs_names[2] = tr("L");
+	ms_thumbs_names[3] = tr("XL");
 	for (int i = 0; i < ms_thumbs_names.size(); i++)
 	{
 		Button * btn = new Button(ms_thumbs_names[i], QString(), QString(), false, true);
@@ -89,7 +93,7 @@ void CtrlJobs::slot_ThumsButtonClicked(Button * i_btn)
 }
 
 CtrlJobsViewOptions::CtrlJobsViewOptions(QWidget * i_parent, ListJobs * i_listjobs, bool i_inworklist):
-	QLabel("View Options", i_parent),
+	QLabel(tr("View Options"), i_parent),
 	m_listjobs(i_listjobs),
 	m_inworklist(i_inworklist)
 {
@@ -109,37 +113,37 @@ void CtrlJobsViewOptions::contextMenuEvent(QContextMenuEvent * i_event)
 	QAction * action;
 	ActionId * action_id;
 
-	action = new QAction("Hide:", this);
+	action = new QAction(tr("Hide:"), this);
 	action->setEnabled(false);
 	menu.addAction(action);
 	menu.addSeparator();
 
-	action_id = new ActionId(ListNodes::e_HideInvert, "Invert", this);
+	action_id = new ActionId(ListNodes::e_HideInvert, tr("Invert"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideInvert);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 	menu.addSeparator();
 
-	action_id = new ActionId(ListNodes::e_HideHidden, "Hidden", this);
+	action_id = new ActionId(ListNodes::e_HideHidden, tr("Hidden"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideHidden);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 
-	action_id = new ActionId(ListNodes::e_HideDone, "Done", this);
+	action_id = new ActionId(ListNodes::e_HideDone, tr("Done"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideDone);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 
-	action_id = new ActionId(ListNodes::e_HideError, "Error", this);
+	action_id = new ActionId(ListNodes::e_HideError, tr("Error"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideError);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
 	menu.addAction(action_id);
 
-	action_id = new ActionId(ListNodes::e_HideOffline, "Offline", this);
+	action_id = new ActionId(ListNodes::e_HideOffline, tr("Offline"), this);
 	action_id->setCheckable(true);
 	action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideOffline);
 	connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
@@ -147,13 +151,13 @@ void CtrlJobsViewOptions::contextMenuEvent(QContextMenuEvent * i_event)
 
 	if (m_inworklist)
 	{
-		action_id = new ActionId(ListNodes::e_HideEmpty, "Empty", this);
+		action_id = new ActionId(ListNodes::e_HideEmpty, tr("Empty"), this);
 		action_id->setCheckable(true);
 		action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideEmpty);
 		connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
 		menu.addAction(action_id);
 
-		action_id = new ActionId(ListNodes::e_HideSystem, "System", this);
+		action_id = new ActionId(ListNodes::e_HideSystem, tr("System"), this);
 		action_id->setCheckable(true);
 		action_id->setChecked(m_listjobs->getFlagsHideShow() & ListNodes::e_HideSystem);
 		connect(action_id, SIGNAL(triggeredId(int)), m_listjobs, SLOT(actHideShow(int)));
@@ -162,15 +166,15 @@ void CtrlJobsViewOptions::contextMenuEvent(QContextMenuEvent * i_event)
 
 	menu.addSeparator();
 
-	action = new QAction("Collapse All Jobs", this);
+	action = new QAction(tr("Collapse All Jobs"), this);
 	connect(action, SIGNAL(triggered()), m_listjobs, SLOT(slot_CollapseJobs()));
 	menu.addAction(action);
 
-	action = new QAction("Expand All Jobs", this);
+	action = new QAction(tr("Expand All Jobs"), this);
 	connect(action, SIGNAL(triggered()), m_listjobs, SLOT(slot_ExpandJobs()));
 	menu.addAction(action);
 
-	action = new QAction("Collapse New Jobs", this);
+	action = new QAction(tr("Collapse New Jobs"), this);
 	action->setCheckable(true);
 	action->setChecked(afqt::QEnvironment::collapseNewJobs());
 	connect(action, SIGNAL(triggered(bool)), this, SLOT(slot_CollapseNewJobs(bool)));

@@ -57,43 +57,43 @@ ListUsers::ListUsers( QWidget* parent):
 	// Add left panel buttons:
 	ButtonPanel * bp; ButtonsMenu * bm;
 
-	bp = addButtonPanel(Item::TUser, "LOG","users_log","Get user log.");
+	bp = addButtonPanel(Item::TUser, tr("LOG"),"users_log","Get user log.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actRequestLog()));
 
-	bp = addButtonPanel(Item::TUser, "PAUSE","user_pause","Pause selected users.","P");
+	bp = addButtonPanel(Item::TUser, tr("PAUSE"),"user_pause","Pause selected users.","P");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actSetPaused()));
 
-	bp = addButtonPanel(Item::TUser, "START","user_unpause","Start (Unpause) selected users.","S");
+	bp = addButtonPanel(Item::TUser, tr("START"),"user_unpause","Start (Unpause) selected users.","S");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actUnsetPaused()));
 
-	bm = addButtonsMenu(Item::TUser, "Solve","Choose jobs solving method.");
+	bm = addButtonsMenu(Item::TUser, tr("Solve"),"Choose jobs solving method.");
 	bm->openMenu();
 
-	bp = addButtonPanel(Item::TUser, "ORDER","users_solve_ordered","Solve jobs by order.");
+	bp = addButtonPanel(Item::TUser, tr("ORDER"),"users_solve_ordered","Solve jobs by order.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actSolveJobsByOrder()));
 
-	bp = addButtonPanel(Item::TUser, "PRIORITY","users_solve_priority","Solve jobs by priority.");
+	bp = addButtonPanel(Item::TUser, tr("PRIORITY"),"users_solve_priority","Solve jobs by priority.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actSolveJobsByPriority()));
 
 	resetButtonsMenu();
 
-	bm = addButtonsMenu(Item::TUser, "Need","Choose jobs solving need.");
+	bm = addButtonsMenu(Item::TUser, tr("Need"),"Choose jobs solving need.");
 	bm->openMenu();
 
-	bp = addButtonPanel(Item::TUser, "CAPACITY","users_solve_capacity","Solve jobs need by running tasks total capacity.");
+	bp = addButtonPanel(Item::TUser, tr("CAPACITY"),"users_solve_capacity","Solve jobs need by running tasks total capacity.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actSolveJobsByCapacity()));
 
-	bp = addButtonPanel(Item::TUser, "TASKS NUM","users_solve_tasksnum","Solve jobs need by running tasks number.");
+	bp = addButtonPanel(Item::TUser, tr("TASKS NUM"),"users_solve_tasksnum","Solve jobs need by running tasks number.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actSolveJobsByTasksNum()));
 
 	resetButtonsMenu();
 
-	bp = addButtonPanel(Item::TAny, "CUSTOM DATA","node_custom_data","Edit node custom data.");
+	bp = addButtonPanel(Item::TAny, tr("CUSTOM DATA"),"node_custom_data","Edit node custom data.");
 	connect(bp, SIGNAL(sigClicked()), this, SLOT(actCustomData()));
 
 	if (af::Environment::GOD())
 	{
-		bp = addButtonPanel(Item::TUser, "DELETE","users_solve_tasksnum",
+		bp = addButtonPanel(Item::TUser, tr("DELETE"),"users_solve_tasksnum",
 				"Solve jobs need by running tasks number.",
 				"" /*hotkey*/, true /*double-click*/);
 		connect(bp, SIGNAL(sigClicked()), this, SLOT(actDelete()));
@@ -103,18 +103,18 @@ ListUsers::ListUsers( QWidget* parent):
 	// Add parameters:
 	if (af::Environment::VISOR() || (af::Environment::getPermUserModHisPriority()))
 	{
-		addParam_Num(Item::TUser, "priority", "Priority", "Priority number", 0, 250);
+		addParam_Num(Item::TUser, "priority", tr("Priority"), "Priority number", 0, 250);
 	}
-	addParam_Str(Item::TUser, "annotation",                "Annotation",             "Annotation string");
-	addParam_Num(Item::TUser, "max_running_tasks",         "Maximum Running",        "Maximum running tasks number", -1, 1<<20);
-	addParam_Num(Item::TUser, "max_running_tasks_per_host","Max Run Per Host",       "Max run tasks on the same host", -1, 1<<20);
-	addParam_REx(Item::TUser, "hosts_mask",                "Hosts Mask",             "Host names pattern that job can run on");
-	addParam_REx(Item::TUser, "hosts_mask_exclude",        "Hosts Mask Exclude",     "Host names pattern that job will not run");
-	addParam_Num(Item::TUser, "errors_avoid_host",         "Errors Job  Avoid Host", "Number of errors for job to avoid host", -1, 1<<10);
-	addParam_Num(Item::TUser, "errors_task_same_host",     "Errors Task Avoid Host", "Number of errors for task to avoid host", -1, 1<<10);
-	addParam_Num(Item::TUser, "errors_retries",            "Errors Retries",         "Number of errors task retries", -1, 1<<10);
-	addParam_Hrs(Item::TUser, "errors_forgive_time",       "Errors Forgive Time",    "After this time host errors will be reset");
-	addParam_Hrs(Item::TUser, "jobs_life_time",            "Jobs Life Time",         "After this time job will be deleted");
+	addParam_Str(Item::TUser, "annotation",                tr("Annotation"),             "Annotation string");
+	addParam_Num(Item::TUser, "max_running_tasks",         tr("Maximum Running"),        "Maximum running tasks number", -1, 1<<20);
+	addParam_Num(Item::TUser, "max_running_tasks_per_host",tr("Max Run Per Host"),       "Max run tasks on the same host", -1, 1<<20);
+	addParam_REx(Item::TUser, "hosts_mask",                tr("Hosts Mask"),             "Host names pattern that job can run on");
+	addParam_REx(Item::TUser, "hosts_mask_exclude",        tr("Hosts Mask Exclude"),     "Host names pattern that job will not run");
+	addParam_Num(Item::TUser, "errors_avoid_host",         tr("Errors Job  Avoid Host"), "Number of errors for job to avoid host", -1, 1<<10);
+	addParam_Num(Item::TUser, "errors_task_same_host",     tr("Errors Task Avoid Host"), "Number of errors for task to avoid host", -1, 1<<10);
+	addParam_Num(Item::TUser, "errors_retries",            tr("Errors Retries"),         "Number of errors task retries", -1, 1<<10);
+	addParam_Hrs(Item::TUser, "errors_forgive_time",       tr("Errors Forgive Time"),    "After this time host errors will be reset");
+	addParam_Hrs(Item::TUser, "jobs_life_time",            tr("Jobs Life Time"),         "After this time job will be deleted");
 
 
 	this->setWindowTitleWithPrefix("Users");
@@ -205,7 +205,7 @@ void ListUsers::calcTitle()
 		ItemUser * itemuser = static_cast<ItemUser*>(m_model->item(i));
 		if (itemuser->running_tasks_num > 0) running++;
 	}
-	this->setWindowTitleWithPrefix(QString("Users: %1, Running %2").arg(total).arg(running));
+	this->setWindowTitleWithPrefix(tr("Users:") + QString(" %1, ").arg(total) + tr("Running")+QString(" %1").arg(running));
 }
 
 void ListUsers::actDelete() { operation(Item::TUser, "delete"); }

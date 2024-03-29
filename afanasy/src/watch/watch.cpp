@@ -28,6 +28,7 @@
 #include <QtGui/QPixmap>
 #include <QApplication>
 
+
 #if QT_VERSION < 0x060000
 #include <QSound>
 #else
@@ -39,8 +40,8 @@
 #include "../include/macrooutput.h"
 #include "../libafanasy/logger.h"
 
-const QString Watch::BtnName[WLAST] = {"null","Farm","Jobs","Monitors","Users","Work"};
-const QString Watch::WndName[WLAST] = {"null","Farm","Jobs","Monitors","Users","Work"};
+QString Watch::BtnName[WLAST] = {"null","Farm","Jobs","Monitors","Users","Work"};
+QString Watch::WndName[WLAST] = {"null","Farm","Jobs","Monitors","Users","Work"};
 WndList* Watch::opened[WLAST] = {0,0,0,0,0,0};
 
 const int Watch::Icons_Size_Large = 48;
@@ -80,6 +81,20 @@ Watch::Watch( Dialog * pDialog, QApplication * pApplication)
 		// Load tickets icons:
 		loadIcons(ms_tickets_icons, path + "/tickets", Icons_Size_Small);
 	}
+	//------------
+	BtnName[0] = tr("null");
+	BtnName[1] = tr("Farm");
+	BtnName[2] = tr("Jobs");
+	BtnName[3] = tr("Monitors");
+	BtnName[4] = tr("Users");
+	BtnName[5] = tr("Work");
+	//------------
+	WndName[0] = tr("null");
+	WndName[1] = tr("Farm");
+	WndName[2] = tr("Jobs");
+	WndName[3] = tr("Monitors");
+	WndName[4] = tr("Users");
+	WndName[5] = tr("Work");
 }
 
 Watch::~Watch()
@@ -490,7 +505,7 @@ void Watch::startProcess( const QString & i_cmd, const QString & i_wdir, const s
 
 void Watch::ntf_JobAdded( const ItemJob * i_job)
 {
-	displayInfo("Job added.");
+	displayInfo(tr("Job added."));
 
 	Watch::playSound( afqt::QEnvironment::ntf_job_added_sound.str );
 
@@ -500,7 +515,7 @@ void Watch::ntf_JobAdded( const ItemJob * i_job)
 
 void Watch::ntf_JobDone( const ItemJob * i_job)
 {
-	displayInfo("Job Done.");
+	displayInfo(tr("Job Done."));
 
 	Watch::playSound( afqt::QEnvironment::ntf_job_done_sound.str );
 
@@ -510,7 +525,7 @@ void Watch::ntf_JobDone( const ItemJob * i_job)
 
 void Watch::ntf_JobError( const ItemJob * i_job)
 {
-	displayWarning("Job Error.");
+	displayWarning(tr("Job Error."));
 
 	Watch::playSound( afqt::QEnvironment::ntf_job_error_sound.str );
 

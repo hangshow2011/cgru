@@ -136,7 +136,7 @@ void ItemMonitor::updateInfo(af::Monitor * i_monitor)
 	{
 		m_info_text += QString(" <br> ") + af::Monitor::EVT_NAMES[e] + " : ";
 		if (i_monitor->hasEvent(e))
-			m_info_text += " <b>SUBMITTED</b>";
+			m_info_text += " <b>" + tr("SUBMITTED") + "</b> ";
 		else
 			m_info_text += " ---";
 	}

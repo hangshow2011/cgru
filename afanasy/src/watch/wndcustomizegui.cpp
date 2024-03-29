@@ -28,22 +28,22 @@ WndCustomizeGUI::WndCustomizeGUI():
 	topLayout->addWidget( tabWidet);
 
 	QWidget * colorsWidget = new QWidget( this);
-	tabWidet->addTab( colorsWidget, "Colors");
+	tabWidet->addTab( colorsWidget, tr("Colors"));
 	colorsWidget->setBackgroundRole( QPalette::Mid);
 	colorsWidget->setAutoFillBackground( true);
 
 	QWidget * starsWidget = new QWidget( this);
-	tabWidet->addTab( starsWidget, "Stars Shape");
+	tabWidet->addTab( starsWidget, tr("Stars Shape"));
 	starsWidget->setBackgroundRole( QPalette::Mid);
 	starsWidget->setAutoFillBackground( true);
 
 	QWidget * fontsWidget = new QWidget( this);
-	tabWidet->addTab( fontsWidget, "Fonts");
+	tabWidet->addTab( fontsWidget, tr("Fonts"));
 	fontsWidget->setBackgroundRole( QPalette::Mid);
 	fontsWidget->setAutoFillBackground( true);
 
 	QWidget * imagesWidget = new QWidget( this);
-	tabWidet->addTab( imagesWidget, "Images");
+	tabWidet->addTab( imagesWidget, tr("Images"));
 	imagesWidget->setBackgroundRole( QPalette::Mid);
 	imagesWidget->setAutoFillBackground( true);
 
@@ -62,7 +62,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	vlayout->setSpacing( 2);
 	hlayout->addLayout( vlayout);
 
-	label = new QLabel("QT standard GUI palette:", this);
+	label = new QLabel(tr("QT standard GUI palette:"), this);
 	label->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter);
 	vlayout->addWidget( label);
 
@@ -86,7 +86,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	vlayout->addWidget( new ColorWidget( this, &afqt::QEnvironment::clr_LinkVisited     ));
 
 
-	label = new QLabel("Watch specific colors:", this);
+	label = new QLabel(tr("Watch specific colors:"), this);
 	label->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter);
 	vlayout->addWidget( label);
 
@@ -105,7 +105,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	hlayout->addLayout( vlayout);
 
 
-	label = new QLabel("Job Colors:", this);
+	label = new QLabel(tr("Job Colors:"), this);
 	label->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter);
 	vlayout->addWidget( label);
 
@@ -120,7 +120,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	vlayout->addWidget( new ColorWidget( this, &afqt::QEnvironment::clr_taskskipped    ));
 	vlayout->addWidget( new ColorWidget( this, &afqt::QEnvironment::clr_taskwaitreconn ));
 
-	label = new QLabel("Render Colors:", this);
+	label = new QLabel(tr("Render Colors:"), this);
 	label->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter);
 	vlayout->addWidget( label);
 
@@ -133,7 +133,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	vlayout->addWidget( new ColorWidget( this, &afqt::QEnvironment::clr_itemrenderpaused ));
 	vlayout->addWidget( new ColorWidget( this, &afqt::QEnvironment::clr_itemrenderpltclr ));
 
-	label = new QLabel("Text Colors:", this);
+	label = new QLabel(tr("Text Colors:"), this);
 	label->setAlignment( Qt::AlignHCenter | Qt::AlignVCenter);
 	vlayout->addWidget( label);
 
@@ -180,7 +180,7 @@ WndCustomizeGUI::WndCustomizeGUI():
 	vlayout->addWidget( new NumberWidget( this, &afqt::QEnvironment::font_sizeplotter));
 
 
-	QPushButton * button = new QPushButton("Save GUI Preferences", this);
+	QPushButton * button = new QPushButton(tr("Save GUI Preferences"), this);
 	connect( button, SIGNAL( pressed()), this, SLOT(save()));
 	topLayout->addWidget( button);
 }

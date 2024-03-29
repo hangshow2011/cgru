@@ -79,59 +79,59 @@ void ItemBranch::v_updateValues(af::Node * i_afnode, int i_msgType)
 	if (Watch::isPadawan())
 	{
 		// Counts:
-		if (branches_total) strCounts += QString(" Branches:%1").arg(branches_total);
-		if (jobs_total    ) strCounts += QString(    " Jobs:%1").arg(jobs_total);
-		if (jobs_running  ) strCounts += QString( " Running:%1").arg(jobs_running);
-		if (jobs_ready    ) strCounts += QString(   " Ready:%1").arg(jobs_ready);
-		if (jobs_done     ) strCounts += QString(    " Done:%1").arg(jobs_done);
-		if (jobs_error    ) strCounts += QString(   " Error:%1").arg(jobs_error);
-		if (tasks_ready   ) strCounts += QString(  " TReady:%1").arg(tasks_ready);
-		if (tasks_error   ) strCounts += QString(  " TError:%1").arg(tasks_error);
+		if (branches_total) strCounts += tr(" Branches:") + QString("%1").arg(branches_total);
+		if (jobs_total) strCounts += tr(" Jobs:") + QString("%1").arg(jobs_total);
+		if (jobs_running) strCounts += tr(" Running:") + QString("%1").arg(jobs_running);
+		if (jobs_ready) strCounts += tr(" Ready:") + QString("%1").arg(jobs_ready);
+		if (jobs_done) strCounts += tr(" Done:") + QString("%1").arg(jobs_done);
+		if (jobs_error) strCounts += tr(" Error:") + QString("%1").arg(jobs_error);
+		if (tasks_ready) strCounts += tr(" TReady:") + QString("%1").arg(tasks_ready);
+		if (tasks_error) strCounts += tr(" TError:") + QString(" TError:%1").arg(tasks_error);
 
 		if (running_tasks_num)
 		{
-			strCounts += QString(" Tasks:%1").arg(running_tasks_num);
-			strCounts += QString(" Capacity:%1").arg(afqt::stoq(af::toKMG(running_capacity_total)));
+			strCounts += tr(" Tasks:") + QString("%1").arg(running_tasks_num);
+			strCounts += tr(" Capacity:") +QString("%1").arg(afqt::stoq(af::toKMG(running_capacity_total)));
 		}
 
 		// Parameters:
-		if (branch->isCreateChilds()) strParameters += " AutoCreateChilds";
-		strParameters += " Solving:";
-		if (branch->isSolveJobs()) strParameters += "Jobs:"; else strParameters += "Users:";
-		if (branch->isSolvePriority()) strParameters += "Priority";  else strParameters += "Ordered";
-		if (branch->isSolveCapacity()) strParameters += ",Capacity"; else strParameters += ",RunTasks";
-		if (max_running_tasks != -1) strParameters += QString(" MaxRuningTasks:%1").arg(max_running_tasks);
-		if (max_running_tasks_per_host != -1) strParameters += QString(" MaxRunTasksPerHost:%1").arg(max_running_tasks_per_host);
-		if (false == hostsmask.isEmpty()) strParameters += QString(" HostsMask(%1)").arg(hostsmask);
-		if (false == hostsmask_exclude.isEmpty()) strParameters += QString(" ExcludeHosts(%1)").arg(hostsmask_exclude);
+		if (branch->isCreateChilds()) strParameters += tr(" AutoCreateChilds");
+		strParameters += tr(" Solving:");
+		if (branch->isSolveJobs()) strParameters += tr("Jobs:"); else strParameters += tr("Users:");
+		if (branch->isSolvePriority()) strParameters += tr("Priority");  else strParameters += tr("Ordered");
+		if (branch->isSolveCapacity()) strParameters += tr(",Capacity"); else strParameters += tr(",RunTasks");
+		if (max_running_tasks != -1) strParameters += tr(" MaxRuningTasks:")+QString("%1").arg(max_running_tasks);
+		if (max_running_tasks_per_host != -1) strParameters += tr(" MaxRunTasksPerHost:")+QString("%1").arg(max_running_tasks_per_host);
+		if (false == hostsmask.isEmpty()) strParameters += tr(" HostsMask") + QString("(%1)").arg(hostsmask);
+		if (false == hostsmask_exclude.isEmpty()) strParameters +=tr(" ExcludeHosts")+ QString("(%1)").arg(hostsmask_exclude);
 	}
 	else if (Watch::isJedi())
 	{
 		// Counts:
-		if (branches_total) strCounts += QString(" Branches:%1").arg(branches_total);
-		if (jobs_total    ) strCounts += QString(    " Jobs:%1").arg(jobs_total);
-		if (jobs_running  ) strCounts += QString(     " Run:%1").arg(jobs_running);
-		if (jobs_ready    ) strCounts += QString(     " Rdy:%1").arg(jobs_ready);
-		if (jobs_done     ) strCounts += QString(    " Done:%1").arg(jobs_done);
-		if (jobs_error    ) strCounts += QString(     " Err:%1").arg(jobs_error);
-		if (tasks_ready   ) strCounts += QString(    " TRdy:%1").arg(tasks_ready);
-		if (tasks_error   ) strCounts += QString(    " TErr:%1").arg(tasks_error);
+		if (branches_total) strCounts += tr(" Branches:") + QString("%1").arg(branches_total);
+		if (jobs_total) strCounts += tr(" Jobs:") + QString("%1").arg(jobs_total);
+		if (jobs_running) strCounts += tr(" Run:") + QString("%1").arg(jobs_running);
+		if (jobs_ready) strCounts += tr(" Rdy:") + QString("%1").arg(jobs_ready);
+		if (jobs_done) strCounts += tr(" Done:") + QString("%1").arg(jobs_done);
+		if (jobs_error) strCounts += tr(" Err:") + QString("%1").arg(jobs_error);
+		if (tasks_ready) strCounts += tr(" TRdy:") + QString("%1").arg(tasks_ready);
+		if (tasks_error) strCounts += tr(" TErr:") + QString("%1").arg(tasks_error);
 
 		if (running_tasks_num)
 		{
-			strCounts += QString(" Tasks:%1").arg(running_tasks_num);
-			strCounts += QString(" Capacity:%1").arg(afqt::stoq(af::toKMG(running_capacity_total)));
+			strCounts += tr(" Tasks:") + QString("%1").arg(running_tasks_num);
+			strCounts += tr(" Capacity:") +QString("%1").arg(afqt::stoq(af::toKMG(running_capacity_total)));
 		}
 
 		// Parameters:
-		if (branch->isCreateChilds()) strParameters += " CreateChilds";
-		if (branch->isSolveJobs()) strParameters += " Jobs:"; else strParameters += " Users:";
-		if (branch->isSolvePriority()) strParameters += "Priority";  else strParameters += "Ordered";
-		if (branch->isSolveCapacity()) strParameters += ",Capacity"; else strParameters += ",MaxTasks";
-		if (max_running_tasks != -1) strParameters += QString(" MaxTasks:%1").arg(max_running_tasks);
-		if (max_running_tasks_per_host != -1) strParameters += QString(" MaxPerHost:%1").arg(max_running_tasks_per_host);
-		if (false == hostsmask.isEmpty()) strParameters += QString(" Hosts(%1)").arg(hostsmask);
-		if (false == hostsmask_exclude.isEmpty()) strParameters += QString(" Exclude(%1)").arg(hostsmask_exclude);
+		if (branch->isCreateChilds()) strParameters += tr(" CreateChilds");
+		if (branch->isSolveJobs()) strParameters += tr(" Jobs:"); else strParameters += tr(" Users:");
+		if (branch->isSolvePriority()) strParameters += tr("Priority");  else strParameters += tr("Ordered");
+		if (branch->isSolveCapacity()) strParameters += tr(",Capacity"); else strParameters += tr(",MaxTasks");
+		if (max_running_tasks != -1) strParameters += tr(" MaxTasks:")+ QString("%1").arg(max_running_tasks);
+		if (max_running_tasks_per_host != -1) strParameters += tr(" MaxPerHost:")+ QString("%1").arg(max_running_tasks_per_host);
+		if (false == hostsmask.isEmpty()) strParameters += tr(" Hosts") + QString("(%1)").arg(hostsmask);
+		if (false == hostsmask_exclude.isEmpty()) strParameters +=tr(" Exclude")+ QString("(%1)").arg(hostsmask_exclude);
 	}
 	else
 	{
@@ -167,9 +167,9 @@ void ItemBranch::v_updateValues(af::Node * i_afnode, int i_msgType)
 	if (branch->getMaxTasksPerSecond() > 0)
 		strParameters = QString("MTPS:%1 ").arg(branch->getMaxTasksPerSecond()) + strParameters;
 
-	if (isLocked()) strName = "(LOCKED) " + strName;
+	if (isLocked()) strName = tr("(LOCKED) ") + strName;
 
-	if (m_paused) strParameters += " PAUSED";
+	if (m_paused) strParameters += tr(" PAUSED");
 
 	m_tooltip = branch->v_generateInfoString(true).c_str();
 
@@ -182,15 +182,19 @@ void ItemBranch::updateInfo(af::Branch * i_branch)
 {
 	m_info_text.clear();
 
-	m_info_text = QString("Jobs: <b>%1</b>").arg(jobs_total);
+	QString str = tr("Jobs:");
+	m_info_text = QString(str + " <b>%1</b>").arg(jobs_total);
 	m_info_text += "<br>";
 
-	m_info_text += QString("<br>Created: <b>%1</b>").arg(afqt::time2Qstr(i_branch->getTimeCreated()));
+	str = "<br>"+tr("Created:");
+	m_info_text += QString(str + " <b>%1</b>").arg(afqt::time2Qstr(i_branch->getTimeCreated()));
 
 	if (m_empty)
 	{
-		m_info_text += QString("<br>Empty: <b>%1</b>").arg(afqt::time2Qstr(i_branch->getTimeEmpty()));
-		m_info_text += QString("<br>Empty for: <b>%1</b>").arg(afqt::stoq(af::time2strHMS(time(NULL) - i_branch->getTimeEmpty())));
+		str = "<br>" + tr("Empty:");
+		m_info_text += QString(str+" <b>%1</b>").arg(afqt::time2Qstr(i_branch->getTimeEmpty()));
+		str = "<br>" + tr("Empty for:");
+		m_info_text += QString(str+" <b>%1</b>").arg(afqt::stoq(af::time2strHMS(time(NULL) - i_branch->getTimeEmpty())));
 	}
 
     ItemNode::updateInfo();

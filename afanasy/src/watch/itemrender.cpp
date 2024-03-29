@@ -211,7 +211,7 @@ void ItemRender::v_updateValues(af::Node * i_afnode, int i_msgType)
 		m_time_launched   = render->getTimeLaunch();
 		m_time_registered = render->getTimeRegister();
 
-		m_info_text_render += "OS: <b>" + afqt::stoq(render->getOS()) + "</b> - " + m_engine;
+		m_info_text_render += tr("OS:") + " <b>" + afqt::stoq(render->getOS()) + "</b> - " + m_engine;
 
 		if( render->getAddress().notEmpty())
 		{
@@ -221,7 +221,7 @@ void ItemRender::v_updateValues(af::Node * i_afnode, int i_msgType)
 			m_info_text_render += "<br>IP: <b>" + m_address_ip_str + "</b>";
 		}
 
-		m_info_text_render += QString("<br>User: <b>%1</b>").arg(m_username);
+		m_info_text_render += QString("<br>") + tr("User:")+ QString(" <b>%1</b>").arg(m_username);
 
 		bool becameOnline = false;
 	    if(((m_online == false) && (render->isOnline())) || (i_msgType == 0))
@@ -242,9 +242,9 @@ void ItemRender::v_updateValues(af::Node * i_afnode, int i_msgType)
 		m_info_text_render += "<br>@HRES@";
 
 		if (m_capacity != -1)
-			m_info_text_render += QString("<br>Capacity: %1").arg(m_capacity);
+			m_info_text_render += QString("<br>")+tr("Capacity:")+QString(" %1").arg(m_capacity);
 		if (m_maxtasks != -1)
-			m_info_text_render += QString("<br>Maximum Tasks: %1").arg(m_maxtasks);
+			m_info_text_render += QString("<br>")+tr("Maximum Tasks:")+QString(" %1").arg(m_maxtasks);
 		if (m_power != -1)
 			m_info_text_render += QString("<br>Custom \"power\": %1").arg(m_power);
 		if (m_properties.size())
@@ -252,10 +252,10 @@ void ItemRender::v_updateValues(af::Node * i_afnode, int i_msgType)
 
 	    m_online = render->isOnline();
 		m_info_text_render += "<br>";
-		m_info_text_render += "<br>Registered: <b>" + afqt::time2Qstr(m_time_registered) + "</b>";
+		m_info_text_render += QString("<br>")+tr("Registered:")+" <b>" + afqt::time2Qstr(m_time_registered) + "</b>";
 		if (m_online)
 		{
-			m_info_text_render += "<br>Launched: <b>" + afqt::time2Qstr(m_time_launched) + "</b>";
+			m_info_text_render += QString("<br>")+tr("Launched:")+" <b>" + afqt::time2Qstr(m_time_launched) + "</b>";
 		}
 		else
 		{

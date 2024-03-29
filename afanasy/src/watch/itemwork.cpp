@@ -69,9 +69,9 @@ void ItemWork::setParentBranch(ItemBranch * i_parent_branch)
 void ItemWork::updateInfo(const af::Work * i_afwork)
 {
 //	if (i_afwork->getRunningTasksNum())
-		m_info_text += QString("<br>Running tasks: <b>%1</b>").arg(i_afwork->getRunningTasksNum());
+	m_info_text += QString("<br>")+tr("Running tasks:")+ QString(" <b>%1</b>").arg(i_afwork->getRunningTasksNum());
 
 //	if (i_afwork->getRunningCapacityTotal())
-		m_info_text += QString("<br>Capacity total: <b>%1</b>").arg(i_afwork->getRunningCapacityTotal());
+		m_info_text += QString("<br>")+tr("Capacity total:")+QString(" <b>%1</b>").arg(i_afwork->getRunningCapacityTotal());
 }
 

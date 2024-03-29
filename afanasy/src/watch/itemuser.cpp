@@ -64,57 +64,56 @@ void ItemUser::v_updateValues(af::Node * i_afnode, int i_msgType)
 
 	if( Watch::isPadawan())
 	{
-		strLeftBottom = QString("Jobs Count: %1 / %2 Running").arg(jobs_num).arg(user->getNumRunningJobs());
+		strLeftBottom = tr("Jobs Count:")+QString(" %1 / %2 ").arg(jobs_num).arg(user->getNumRunningJobs())+tr("Running");
 
 		strHCenterTop.clear();
-		if (max_running_tasks != -1) strHCenterTop += QString(" MaxRuningTasks:%1").arg(max_running_tasks);
-		if (max_running_tasks_per_host != -1) strHCenterTop += QString(" MaxRunTasksPerHost:%1").arg(max_running_tasks_per_host);
-		if( false == hostsmask.isEmpty()) strHCenterTop += QString(" HostsMask(%1)").arg( hostsmask);
-		if( false == hostsmask_exclude.isEmpty()) strHCenterTop += QString(" ExcludeHosts(%1)").arg( hostsmask_exclude);
+		if (max_running_tasks != -1) strHCenterTop += tr(" MaxRuningTasks:")+QString("%1").arg(max_running_tasks);
+		if (max_running_tasks_per_host != -1) strHCenterTop += tr(" MaxRunTasksPerHost:")+QString("%1").arg(max_running_tasks_per_host);
+		if( false == hostsmask.isEmpty()) strHCenterTop += tr(" HostsMask")+QString("(%1)").arg( hostsmask);
+		if( false == hostsmask_exclude.isEmpty()) strHCenterTop += tr(" ExcludeHosts")+QString("(%1)").arg( hostsmask_exclude);
 		strHCenterTop += Item::generateErrorsSolvingInfo( errors_avoidhost, errors_tasksamehost, errors_retries);
-		if( errors_forgivetime > 0 ) strHCenterTop += QString(" ErrorsForgiveTime:%1").arg( af::time2strHMS( errors_forgivetime, true).c_str());
-		if( jobs_lifetime > 0 ) strHCenterTop += QString(" JobsLifeTime:%1").arg( af::time2strHMS( jobs_lifetime, true).c_str());
+		if( errors_forgivetime > 0 ) strHCenterTop += tr(" ErrorsForgiveTime:")+QString("%1").arg( af::time2strHMS( errors_forgivetime, true).c_str());
+		if( jobs_lifetime > 0 ) strHCenterTop += tr(" JobsLifeTime:")+QString("%1").arg( af::time2strHMS( jobs_lifetime, true).c_str());
 
 		strRightTop.clear();
-		if( hostname.size())
-			strRightTop = QString("Latest Activity Host: %1").arg( hostname);
+		if( hostname.size()) strRightTop = tr("Latest Activity Host:") + QString(" %1").arg(hostname);
 
 		if (user->isSolvePriority())
-			strRightBottom = "Solving: Priority";
+			strRightBottom = tr("Solving: Priority");
 		else
-			strRightBottom = "Solving: Ordered";
+			strRightBottom = tr("Solving: Ordered");
 
 		if (user->isSolveCapacity())
-			strRightBottom += ", Capacity";
+			strRightBottom += tr(", Capacity");
 		else
-			strRightBottom += ", RunTasks";
+			strRightBottom += tr(", RunTasks");
 	}
 	else if( Watch::isJedi())
 	{
-		strLeftBottom = QString("Jobs: %1 / %2 Run").arg(jobs_num).arg(user->getNumRunningJobs());
+		strLeftBottom = tr("Jobs:") + QString(" %1 / %2 ").arg(jobs_num).arg(user->getNumRunningJobs())+tr("Run");
 
 		strHCenterTop.clear();
-		if (max_running_tasks != -1) strHCenterTop += QString(" MaxTasks:%1").arg(max_running_tasks);
-		if (max_running_tasks_per_host != -1) strHCenterTop += QString(" MaxPerHost:%1").arg(max_running_tasks_per_host);
-		if( false == hostsmask.isEmpty()) strHCenterTop += QString(" Hosts(%1)").arg( hostsmask);
-		if( false == hostsmask_exclude.isEmpty()) strHCenterTop += QString(" Exclude(%1)").arg( hostsmask_exclude);
+		if (max_running_tasks != -1) strHCenterTop += tr(" MaxTasks:") + QString("%1").arg(max_running_tasks);
+		if (max_running_tasks_per_host != -1) strHCenterTop +=tr(" MaxPerHost:")+ QString("%1").arg(max_running_tasks_per_host);
+		if (false == hostsmask.isEmpty()) strHCenterTop += tr(" Hosts") + QString("(%1)").arg(hostsmask);
+		if( false == hostsmask_exclude.isEmpty()) strHCenterTop +=tr(" Exclude")+ QString("(%1)").arg( hostsmask_exclude);
 		strHCenterTop += Item::generateErrorsSolvingInfo( errors_avoidhost, errors_tasksamehost, errors_retries);
-		if( errors_forgivetime > 0 ) strHCenterTop += QString(" ErrForgive:%1").arg( af::time2strHMS( errors_forgivetime, true).c_str());
-		if( jobs_lifetime > 0 ) strHCenterTop += QString(" JobsLife:%1").arg( af::time2strHMS( jobs_lifetime, true).c_str());
+		if( errors_forgivetime > 0 ) strHCenterTop +=tr(" ErrForgive:")+ QString("%1").arg( af::time2strHMS( errors_forgivetime, true).c_str());
+		if( jobs_lifetime > 0 ) strHCenterTop +=tr(" JobsLife:")+ QString("%1").arg( af::time2strHMS( jobs_lifetime, true).c_str());
 
 		strRightTop.clear();
 		if( hostname.size())
-			strRightTop = QString("Host:%1").arg( hostname);
+			strRightTop = tr("Host:")+QString("%1").arg( hostname);
 
 		if (user->isSolvePriority())
-			strRightBottom = "Priority";
+			strRightBottom = tr("Priority");
 		else
-			strRightBottom = "Ordered";
+			strRightBottom = tr("Ordered");
 
 		if (user->isSolveCapacity())
-			strRightBottom += " Capacity";
+			strRightBottom += tr(" Capacity");
 		else
-			strRightBottom += " MaxTasks";
+			strRightBottom += tr(" MaxTasks");
 	}
 	else
 	{
@@ -145,9 +144,9 @@ void ItemUser::v_updateValues(af::Node * i_afnode, int i_msgType)
 
 	ItemNode::updateStrParameters(strHCenterTop);
 
-	if( isLocked()) strLeftTop = "(LOCK) " + strLeftTop;
+	if( isLocked()) strLeftTop = tr("(LOCK) ") + strLeftTop;
 
-	if (m_paused) strRightTop += " PAUSED";
+	if (m_paused) strRightTop += tr(" PAUSED");
 
 	m_tooltip = user->v_generateInfoString( true).c_str();
 
@@ -160,16 +159,16 @@ void ItemUser::updateInfo(af::User * i_user)
 {
 	m_info_text.clear();
 
-	m_info_text = QString("Jobs total: <b>%1</b>").arg(i_user->getNumJobs());
-	m_info_text += QString(", running: <b>%1</b>").arg(i_user->getNumRunningJobs());
+	m_info_text = tr("Jobs total:") + QString(" <b>%1</b>").arg(i_user->getNumJobs());
+	m_info_text += tr(", running:") + QString(" <b>%1</b>").arg(i_user->getNumRunningJobs());
 	if (i_user->getHostName().size())
-		m_info_text += QString("<br>Activity host: <b>%1</b>").arg(afqt::stoq(i_user->getHostName()));
+		m_info_text += QString("<br>")+tr("Activity host:")+ QString(" <b>%1</b>").arg(afqt::stoq(i_user->getHostName()));
 	m_info_text += "<br>";
 	ItemWork::updateInfo(i_user);
 
     m_info_text += "<br>";
-	m_info_text += QString("<br>Registered: <b>%1</b>").arg(afqt::time2Qstr(i_user->getTimeRegister()));
-	m_info_text += QString("<br>Last activity: <b>%1</b>").arg(afqt::time2Qstr(i_user->getTimeActivity()));
+	m_info_text += QString("<br>")+tr("Registered:")+ QString(" <b>%1</b>").arg(afqt::time2Qstr(i_user->getTimeRegister()));
+	m_info_text += QString("<br>")+tr("Last activity:")+ QString(" <b>%1</b>").arg(afqt::time2Qstr(i_user->getTimeActivity()));
 
 	ItemNode::updateInfo();
 }
