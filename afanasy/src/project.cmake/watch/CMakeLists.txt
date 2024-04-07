@@ -14,6 +14,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 add_executable(afwatch ${src} ${inc} ${QM_FILES})
 
+add_custom_command(TARGET afwatch POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_BINARY_DIR}/zh_cn.qm $<TARGET_FILE_DIR:afwatch>/translations
+)
+
 if( NOT $ENV{AF_ADD_CFLAGS} STREQUAL "" )
    set_target_properties(afwatch PROPERTIES COMPILE_FLAGS $ENV{AF_ADD_CFLAGS})
 endif( NOT $ENV{AF_ADD_CFLAGS} STREQUAL "" )
