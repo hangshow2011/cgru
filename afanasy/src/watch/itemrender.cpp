@@ -758,7 +758,7 @@ void ItemRender::v_paint(QPainter * i_painter, const QRect & i_rect, const QStyl
 		i_painter->drawText(x+5, y_cur, w-10, HeightOffline,
 				Qt::AlignVCenter | Qt::AlignHCenter, offlineState_time, &rect_center);
 		i_painter->drawText(x+5, y_cur, (w>>1)-10-(rect_center.width()>>1), HeightOffline,
-				Qt::AlignVCenter | Qt::AlignLeft, m_name, &rect);
+				Qt::AlignVCenter | Qt::AlignLeft, m_name + ":" + m_address_ip_str, &rect);
 
 		i_painter->setFont( afqt::QEnvironment::f_thin);
 		i_painter->drawText(x+5+rect.width()+10, y_cur, (w>>1)-10-(rect_center.width()>>1)-rect.width()-10, HeightOffline,
