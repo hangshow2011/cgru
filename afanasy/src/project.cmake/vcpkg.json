@@ -1,0 +1,29 @@
+{
+    "name": "cgru",
+    "description": [
+        "CGRU is the Computer Graphics Tools Pack."
+    ],
+    "version": "3.4.0",
+    "$default-features-explanation": "Users using this library transitively will get all backends automatically",
+    "default-features": [],
+    "features": {},
+    "builtin-baseline": "a42af01b72c28a8e1d7b48107b33e4f286a55ef6",
+    "dependencies": [
+        "python3",
+        "qt5"
+    ],
+    "overrides": [
+        {
+            "name": "python3",
+            "version": "3.10.7#7"
+        },
+        {
+            "name": "qt5",
+            "version": "5.15.2#1"
+        },
+        {
+            "name": "libffi",
+            "version": "3.4.4#2"
+        }
+    ]
+}

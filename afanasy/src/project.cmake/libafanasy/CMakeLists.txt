@@ -5,7 +5,7 @@ add_library(afanasy ${src} ${inc})
 if(UNIX AND NOT APPLE)
    set_target_properties(afanasy PROPERTIES COMPILE_FLAGS "-fPIC $ENV{AF_ADD_CFLAGS}")
 endif(UNIX AND NOT APPLE)
-target_link_libraries(afanasy ${PYTHON_LIBRARIES})
+target_link_libraries(afanasy Python3::Python)
 
 add_definitions(-DCGRU_REVISION=$ENV{CGRU_REVISION})
 add_definitions(-DCGRU_VERSION=$ENV{CGRU_VERSION})

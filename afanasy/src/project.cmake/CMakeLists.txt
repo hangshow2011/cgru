@@ -1,9 +1,13 @@
 if(UNIX)
 	cmake_minimum_required(VERSION 2.8)
 endif()
+cmake_minimum_required(VERSION 3.25)
 project(afanasy)
 
 set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_CXX_STANDARD 11)
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 set( CMAKE_CXX_OUTPUT_EXTENSION ".${CMAKE_HOST_SYSTEM_NAME}.o")
 
@@ -14,7 +18,7 @@ if( ( NOT $ENV{AF_PYTHON_INCLUDE_PATH} STREQUAL "") AND ( NOT $ENV{AF_PYTHON_LIB
 	set(PYTHON_LIBRARIES $ENV{AF_PYTHON_LIBRARIES})
 	message("Using specified python = '${PYTHON_INCLUDE_PATH}'")
 else( ( NOT $ENV{AF_PYTHON_INCLUDE_PATH} STREQUAL "") AND ( NOT $ENV{AF_PYTHON_LIBRARIES} STREQUAL "" ) )
-	find_package(PythonLibs REQUIRED)
+	find_package(Python3 COMPONENTS Development REQUIRED)
 endif( ( NOT $ENV{AF_PYTHON_INCLUDE_PATH} STREQUAL "") AND ( NOT $ENV{AF_PYTHON_LIBRARIES} STREQUAL "" ) )
 
 if( "$ENV{AF_POSTGRESQL}" STREQUAL "NO" )
@@ -68,7 +72,7 @@ endif()
 
 include_directories(${PYTHON_INCLUDE_PATH})
 
-set( OUTPUT_DIRECTORY "../../../$ENV{AF_OSTYPE}/bin")
+set( OUTPUT_DIRECTORY "../../$ENV{AF_OSTYPE}/_afanasy/bin")
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OUTPUT_DIRECTORY}")
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${OUTPUT_DIRECTORY}")
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${OUTPUT_DIRECTORY}")
