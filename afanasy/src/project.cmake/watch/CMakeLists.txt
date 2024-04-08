@@ -47,3 +47,13 @@ if(${CMAKE_VERSION} VERSION_LESS "3.20.0")
 else()
 	target_link_libraries(afwatch afqt Qt::Multimedia Qt::Widgets $ENV{AF_EXTRA_LIBS} )
 endif()
+
+set(CMAKE_INSTALL_UCRT_LIBRARIES TRUE)
+include(InstallRequiredSystemLibraries)
+
+install(TARGETS afwatch 
+		RUNTIME_DEPENDENCIES
+		PRE_EXCLUDE_REGEXES "api-ms-" "ext-ms-" "hvsifiletrust" "pdmutilities"
+        POST_EXCLUDE_REGEXES ".*system32/.*\\.dll"
+		)
+install(FILES $<TARGET_FILE_DIR:afwatch>/translations/zh_cn.qm DESTINATION translations)

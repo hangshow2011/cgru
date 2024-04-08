@@ -23,3 +23,5 @@ if(WIN32)
 endif(WIN32)
 
 target_link_libraries(afserver afsql $ENV{AF_EXTRA_LIBS} )
+
+install(TARGETS afserver)

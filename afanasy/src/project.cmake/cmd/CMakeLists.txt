@@ -23,3 +23,5 @@ if(WIN32)
 endif(WIN32)
 
 target_link_libraries(afcmd afsql $ENV{AF_EXTRA_LIBS} )
+
+install( TARGETS afcmd )

@@ -17,3 +17,5 @@ target_link_libraries(afservice Iphlpapi.lib Shlwapi.lib ${EXTRA_LIBS} $ENV{AF_E
 if( NOT $ENV{AF_ADD_LFLAGS} STREQUAL "" )
    set_target_properties(afservice PROPERTIES LINK_FLAGS $ENV{AF_ADD_LFLAGS})
 endif( NOT $ENV{AF_ADD_LFLAGS} STREQUAL "" )
+
+install(TARGETS afservice)

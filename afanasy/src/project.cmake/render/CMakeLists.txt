@@ -23,3 +23,4 @@ if( NOT $ENV{AF_ADD_LFLAGS} STREQUAL "" )
    set_target_properties(afrender PROPERTIES LINK_FLAGS $ENV{AF_ADD_LFLAGS})
 endif( NOT $ENV{AF_ADD_LFLAGS} STREQUAL "" )
 
+install( TARGETS afrender )
