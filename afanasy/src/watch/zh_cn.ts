@@ -682,12 +682,12 @@
     <message>
         <location filename="dialog.cpp" line="194"/>
         <source>UI &amp;Level</source>
-        <translation>界面 &amp;等级</translation>
+        <translation>&amp;界面等级</translation>
     </message>
     <message>
         <location filename="dialog.cpp" line="199"/>
         <source>Color &amp;Theme</source>
-        <translation>颜色 &amp;主题</translation>
+        <translation>&amp;颜色主题</translation>
     </message>
     <message>
         <location filename="dialog.cpp" line="207"/>
@@ -2066,17 +2066,17 @@
     <message>
         <location filename="listrenders.cpp" line="113"/>
         <source>ALL</source>
-        <translation>所有</translation>
+        <translation type="unfinished">弹出所有任务</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="116"/>
         <source>NOT MY</source>
-        <translation>不是我的任务</translation>
+        <translation type="unfinished">弹出不是我的任务</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="121"/>
         <source>HEAL</source>
-        <translation>治疗</translation>
+        <translation type="unfinished">重启错误的渲染</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="126"/>
@@ -2231,7 +2231,7 @@
     <message>
         <location filename="listrenders.cpp" line="211"/>
         <source>Busy Nimby Time</source>
-        <translation>繁忙Nimby时间</translation>
+        <translation type="unfinished">繁忙调度时间</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="212"/>
@@ -2356,22 +2356,22 @@
     <message>
         <location filename="listrenders.cpp" line="393"/>
         <source>Set NIMBY</source>
-        <translation>设置NIMBY</translation>
+        <translation type="unfinished">关闭自动调度</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="398"/>
         <source>Set nimby</source>
-        <translation>设置nimby</translation>
+        <translation type="unfinished">启用自动调度</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="403"/>
         <source>Set Free</source>
-        <translation>设置自由</translation>
+        <translation type="unfinished">设置任意调度</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="408"/>
         <source>Set User</source>
-        <translation>设置用户</translation>
+        <translation type="unfinished">指定用户调度</translation>
     </message>
     <message>
         <location filename="listrenders.cpp" line="414"/>
