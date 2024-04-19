@@ -91,6 +91,20 @@ const std::string & MCTask::getOutput() const
 
 	return m_data;
 }
+//LogError
+void MCTask::setLogError(const std::string &i_output)
+{
+	if (m_type != TNULL) AF_ERR << "Type is not NULL.";
+
+	m_type = TLog;
+	m_data = i_output;
+}
+const std::string &MCTask::getLogError() const
+{
+	if (m_type != TLog) AF_ERR << "Type is not TLog.";
+
+	return m_data;
+}
 
 
 // Log:

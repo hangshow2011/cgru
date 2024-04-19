@@ -37,6 +37,7 @@ public:
 
 
 	inline bool hasOutput() const { return ( m_type == TOutput ) && ( m_data.size() > 0 ); }
+	inline bool hasLogError() const { return (m_type == TLog) && (m_data.size() > 0); }
 	inline bool hasExec()   const { return ( m_type == TExec   ) && ( m_exec != NULL    ); }
 
 
@@ -68,7 +69,9 @@ public:
 	void setOutput( const std::string & i_output);
 	void updateOutput( const std::string & i_output);
 	const std::string & getOutput() const;
-
+	//LogError
+	void setLogError(const std::string &i_output);
+	const std::string &getLogError() const;
 
 	// Task log mode:
 	//

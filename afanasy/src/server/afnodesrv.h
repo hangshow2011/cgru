@@ -50,6 +50,7 @@ public:
 	void appendLog( const std::string & message);  ///< Append task log with a \c message .
 	inline const std::list<std::string> & getLog() { return m_log; }    ///< Get log.
 	af::Msg * writeLog( bool i_binary) const;
+	af::Msg *writeLogError(bool i_binary) const;
 	int calcLogWeight() const;
 
 protected:

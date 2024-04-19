@@ -3,7 +3,7 @@
 from parsers import parser
 
 FRAME    = 'FRAME: '
-PERCENT  = 'PROGRESS: '
+PERCENT  = 'progress '
 
 class generic(parser.parser):
     """Simple generic parser
@@ -13,7 +13,7 @@ class generic(parser.parser):
         parser.parser.__init__(self)
 
         self.str_warning =         ['[ PARSER WARNING ]']
-        self.str_error =           ['[ PARSER ERROR ]']
+        self.str_error =           ['[error]']
         self.str_badresult =       ['[ PARSER BAD RESULT ]']
         self.str_finishedsuccess = ['[ PARSER FINISHED SUCCESS ]']
 

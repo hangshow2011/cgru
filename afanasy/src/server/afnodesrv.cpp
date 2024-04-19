@@ -211,3 +211,12 @@ af::Msg * AfNodeSrv::writeLog( bool i_binary) const
 	return msg;
 }
 
+af::Msg *AfNodeSrv::writeLogError(bool i_binary) const
+{
+	if (false == i_binary) return af::jsonMsg("log", m_node->getName(), m_log);
+
+	af::Msg *msg = new af::Msg;
+	msg->setStringList(m_log);
+	return msg;
+}
+

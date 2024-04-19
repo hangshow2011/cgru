@@ -70,6 +70,8 @@ public:
 
 	/// Set render id if task is running, or filename to read output from
 	void getOutput( af::MCTask & io_mctask, std::string & o_error) const;
+	//LogError
+	void getLogError(af::MCTask &io_mctask, std::string &o_error) const;
 
 	af::Msg * getStoredFiles() const;
 	void getStoredFiles( std::ostringstream & i_str) const;

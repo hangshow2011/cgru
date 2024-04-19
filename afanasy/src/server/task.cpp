@@ -576,6 +576,38 @@ void Task::getOutput( af::MCTask & io_mctask, std::string & o_error) const
 	io_mctask.setOutput( getOutputFileName( start_num));
 }
 
+void Task::getLogError(af::MCTask &io_mctask, std::string &o_error) const
+{
+	if (m_progress->starts_count < 1)
+	{
+		o_error = "Task is not started.";
+		return;
+	}
+
+	int start_num = io_mctask.getNumber();
+	if (start_num > m_progress->starts_count)
+	{
+		o_error += "Task was started " + af::itos(m_progress->starts_count) + " times ( less than "
+				   + af::itos(start_num) + " times ).";
+		return;
+	}
+
+	if (start_num == 0)
+	{
+		if (m_run && m_run->notZombie())
+		{
+			io_mctask.m_render_id = m_run->v_getRunningRenderID(o_error);
+			return;
+		}
+		else
+		{
+			start_num = m_progress->starts_count;
+		}
+	}
+
+	io_mctask.setLogError(getOutputFileName(start_num));
+}
+
 const std::string Task::v_getInfo( bool full) const
 {
    std::string info = "#";

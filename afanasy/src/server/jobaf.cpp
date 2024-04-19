@@ -1404,7 +1404,31 @@ af::Msg * JobAf::writeTask( int i_b, int i_t, const std::string & i_mode, bool i
 	}
 	else if( i_mode == "log" )
 	{
-		mctask.setLog( getTaskLog( i_b, i_t));
+		std::list<std::string> logs = getTaskLog(i_b, i_t);
+		//-------------
+		std::string error;
+		v_getTaskLogError(mctask, error);
+		std::string str;
+		if (mctask.hasLogError())
+		{
+			int readsize = -1;
+			char *data = af::fileRead(mctask.getLogError(), &readsize, af::Msg::SizeDataMax, &error);
+			if (data) 
+				str = data;
+			delete[] data;
+		}
+		std::string::size_type pos = str.find("\n");
+		while (pos != std::string::npos)
+		{
+			std::string t = str.substr(0, pos);
+			if (t.find("[error]") != std::string::npos)
+			{
+				logs.push_back(t);
+			}
+			str = str.substr(pos + 1, str.size());
+			pos = str.find("\n");
+		}
+		mctask.setLog(logs);
 		return mctask.generateMessage( i_binary);
 	}
 	else if( i_mode == "error_hosts")
@@ -1508,6 +1532,22 @@ void JobAf::v_getTaskOutput( af::MCTask & io_mctask, std::string & o_error) cons
 	fillTaskNames( io_mctask);
 
 	m_blocks[b]->m_tasks[t]->getOutput( io_mctask, o_error);
+}
+
+void JobAf::v_getTaskLogError(af::MCTask &io_mctask, std::string &o_error) const
+{
+	int b = io_mctask.getBlockNum();
+	int t = io_mctask.getTaskNum();
+
+	if (false == checkBlockTaskNumbers(b, t, "getTaskOutput"))
+	{
+		o_error = "Invalid block and task numbers";
+		return;
+	}
+
+	fillTaskNames(io_mctask);
+
+	m_blocks[b]->m_tasks[t]->getLogError(io_mctask, o_error);
 }
 
 void JobAf::fillTaskNames( af::MCTask & o_mctask) const

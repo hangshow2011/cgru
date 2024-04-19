@@ -55,6 +55,8 @@ public:
 	/// or filename if task is not running.
 	/** Virtual for system job, it just sets an error that output is not available.**/
 	virtual void v_getTaskOutput( af::MCTask & io_mctask, std::string & o_error) const;
+	//LogError
+	virtual void v_getTaskLogError(af::MCTask &io_mctask, std::string &o_error) const;
 
 	/// Whether the job can produce a task
 	/** Used to limit nodes for heavy solve algorithm **/
